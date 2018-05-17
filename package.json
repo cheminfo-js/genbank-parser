@@ -14,7 +14,7 @@
   "author": "Daniel Kostro <kostro.d@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "ve-range-utils": "^2.5.0"
+    "validate.io-nonnegative-integer-array": "^1.0.1"
   },
   "devDependencies": {
     "cheminfo-tools": "^1.20.2"
