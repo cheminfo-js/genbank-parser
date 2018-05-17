@@ -1,0 +1,113 @@
+LOCUS       pENTR221                2546 bp ds-DNA     circular SYN 18-JAN-2017
+DEFINITION  Entry vector for transferring a cloned attL-flanked gene to a
+            destination vector in the Gateway(R) system.
+ACCESSION
+VERSION     .
+KEYWORDS    pENTR221.
+SOURCE      null
+  ORGANISM  
+            .
+REFERENCE   1  (bases 1 to 2546)
+  AUTHORS   Invitrogen, (Life, Technologies)
+  TITLE     Direct Submission
+  JOURNAL   Exported Thursday, Feb 11, 2016 from SnapGene 3.0.3
+            http://www.snapgene.com
+FEATURES             Location/Qualifiers
+     source          1..2546
+                     /organism="synthetic DNA construct"
+                     /lab_host="Escherichia coli"
+                     /mol_type="other DNA"
+     terminator      268..295
+                     /note="rrnB T2 terminator"
+                     /note="transcription terminator T2 from the E. coli rrnB 
+                     gene"
+     terminator      387..473
+                     /gene="Escherichia coli rrnB"
+                     /note="rrnB T1 terminator"
+                     /note="transcription terminator T1 from the E. coli rrnB 
+                     gene"
+     primer_bind     537..553
+                     /note="M13 fwd"
+                     /note="common sequencing primer, one of multiple similar 
+                     variants"
+     protein_bind    569..667
+                     /gene="mutant version of attL"
+                     /bound_moiety="LR Clonase(TM)"
+                     /note="attL1"
+                     /note="recombination site for the Gateway(R) LR reaction"
+     misc_feature    668..670
+                     /note="ORF insertion site"
+     protein_bind    671..770
+                     /gene="mutant version of attL"
+                     /bound_moiety="LR Clonase(TM)"
+                     /note="attL2"
+                     /note="recombination site for the Gateway(R) LR reaction"
+     promoter        complement(788..806)
+                     /note="T7 promoter"
+                     /note="promoter for bacteriophage T7 RNA polymerase"
+     primer_bind     complement(811..827)
+                     /note="M13 rev"
+                     /note="common sequencing primer, one of multiple similar 
+                     variants"
+     CDS             940..1749
+                     /codon_start=1
+                     /gene="aph(3')-Ia"
+                     /product="aminoglycoside phosphotransferase"
+                     /note="KanR"
+                     /note="confers resistance to kanamycin in bacteria or G418
+                      (Geneticin(R)) in eukaryotes"
+                     /translation="MSHIQRETSRPRLNSNMDADLYGYKWARDNVGQSGATIYRLYGK
+                     PDAPELFLKHGKGSVANDVTDEMVRLNWLTEFMPLPTIKHFIRTPDDAWLLTTAIPGK
+                     TAFQVLEEYPDSGENIVDALAVFLRRLHSIPVCNCPFNSDRVFRLAQAQSRMNNGLVD
+                     ASDFDDERNGWPVEQVWKEMHKLLPFSPDSVVTHGDFSLDNLIFDEGKLIGCIDVGRV
+                     GIADRYQDLAILWNCLGEFSPSLQKRLFQKYGIDNPDMNKLQFHLMLDEFF"
+     rep_origin      1896..2484
+                     /direction="RIGHT"
+                     /note="ori"
+                     /note="high-copy-number ColE1/pMB1/pBR322/pUC origin of 
+                     replication"
+ORIGIN      
+        1 ctttcctgcg ttatcccctg attctgtgga taaccgtatt accgcctttg agtgagctga
+       61 taccgctcgc cgcagccgaa cgaccgagcg cagcgagtca gtgagcgagg aagcggaaga
+      121 gcgcccaata cgcaaaccgc ctctccccgc gcgttggccg attcattaat gcagctggca
+      181 cgacaggttt cccgactgga aagcgggcag tgagcgcaac gcaattaata cgcgtaccgc
+      241 tagccaggaa gagtttgtag aaacgcaaaa aggccatccg tcaggatggc cttctgctta
+      301 gtttgatgcc tggcagttta tggcgggcgt cctgcccgcc accctccggg ccgttgcttc
+      361 acaacgttca aatccgctcc cggcggattt gtcctactca ggagagcgtt caccgacaaa
+      421 caacagataa aacgaaaggc ccagtcttcc gactgagcct ttcgttttat ttgatgcctg
+      481 gcagttccct actctcgcgt taacgctagc atggatgttt tcccagtcac gacgttgtaa
+      541 aacgacggcc agtcttaagc tcgggcccca aataatgatt ttattttgac tgatagtgac
+      601 ctgttcgttg caacaaattg atgagcaatg cttttttata atgccaactt tgtacaaaaa
+      661 agcaggcacc acccagcttt cttgtacaaa gttggcatta taagaaagca ttgcttatca
+      721 atttgttgca acgaacaggt cactatcagt caaaataaaa tcattatttg ccatccagct
+      781 gatatcccct atagtgagtc gtattacatg gtcatagctg tttcctggca gctctggccc
+      841 gtgtctcaaa atctctgatg ttacattgca caagataaaa atatatcatc atgaacaata
+      901 aaactgtctg cttacataaa cagtaataca aggggtgtta tgagccatat tcaacgggaa
+      961 acgtcgaggc cgcgattaaa ttccaacatg gatgctgatt tatatgggta taaatgggct
+     1021 cgcgataatg tcgggcaatc aggtgcgaca atctatcgct tgtatgggaa gcccgatgcg
+     1081 ccagagttgt ttctgaaaca tggcaaaggt agcgttgcca atgatgttac agatgagatg
+     1141 gtcagactaa actggctgac ggaatttatg cctcttccga ccatcaagca ttttatccgt
+     1201 actcctgatg atgcatggtt actcaccact gcgatccccg gaaaaacagc attccaggta
+     1261 ttagaagaat atcctgattc aggtgaaaat attgttgatg cgctggcagt gttcctgcgc
+     1321 cggttgcatt cgattcctgt ttgtaattgt ccttttaaca gcgatcgcgt atttcgtctc
+     1381 gctcaggcgc aatcacgaat gaataacggt ttggttgatg cgagtgattt tgatgacgag
+     1441 cgtaatggct ggcctgttga acaagtctgg aaagaaatgc ataaactttt gccattctca
+     1501 ccggattcag tcgtcactca tggtgatttc tcacttgata accttatttt tgacgagggg
+     1561 aaattaatag gttgtattga tgttggacga gtcggaatcg cagaccgata ccaggatctt
+     1621 gccatcctat ggaactgcct cggtgagttt tctccttcat tacagaaacg gctttttcaa
+     1681 aaatatggta ttgataatcc tgatatgaat aaattgcagt ttcatttgat gctcgatgag
+     1741 tttttctaat cagaattggt taattggttg taacactggc agagcattac gctgacttga
+     1801 cgggacggcg caagctcatg accaaaatcc cttaacgtga gttacgcgtc gttccactga
+     1861 gcgtcagacc ccgtagaaaa gatcaaagga tcttcttgag atcctttttt tctgcgcgta
+     1921 atctgctgct tgcaaacaaa aaaaccaccg ctaccagcgg tggtttgttt gccggatcaa
+     1981 gagctaccaa ctctttttcc gaaggtaact ggcttcagca gagcgcagat accaaatact
+     2041 gtccttctag tgtagccgta gttaggccac cacttcaaga actctgtagc accgcctaca
+     2101 tacctcgctc tgctaatcct gttaccagtg gctgctgcca gtggcgataa gtcgtgtctt
+     2161 accgggttgg actcaagacg atagttaccg gataaggcgc agcggtcggg ctgaacgggg
+     2221 ggttcgtgca cacagcccag cttggagcga acgacctaca ccgaactgag atacctacag
+     2281 cgtgagcatt gagaaagcgc cacgcttccc gaagggagaa aggcggacag gtatccggta
+     2341 agcggcaggg tcggaacagg agagcgcacg agggagcttc cagggggaaa cgcctggtat
+     2401 ctttatagtc ctgtcgggtt tcgccacctc tgacttgagc gtcgattttt gtgatgctcg
+     2461 tcaggggggc ggagcctatg gaaaaacgcc agcaacgcgg cctttttacg gttcctggcc
+     2521 ttttgctggc cttttgctca catgtt
+//
