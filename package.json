@@ -1,15 +1,12 @@
 {
   "name": "genbank-parser",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "parse genbank",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "genbank",
-    "parser"
-  ],
+  "keywords": ["genbank", "parser"],
   "author": "Daniel Kostro <kostro.d@gmail.com>",
   "license": "MIT",
   "dependencies": {
