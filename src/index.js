@@ -29,15 +29,8 @@ var flattenSequenceArray = require('./utils/flattenSequenceArray');
 var validateSequenceArray = require('./utils/validateSequenceArray');
 var splitStringIntoLines = require('./utils/splitStringIntoLines.js');
 var createInitialSequence = require('./utils/createInitialSequence');
-const addPromiseOption = require('./utils/addPromiseOption');
 
-function genbankToJson(string, onFileParsedUnwrapped, options) {
-  var onFileParsed = function(sequences, options) {
-    //before we call the onFileParsed callback, we need to flatten the sequence, and convert the old sequence data to the new data type
-    onFileParsedUnwrapped(
-      validateSequenceArray(flattenSequenceArray(sequences), options)
-    );
-  };
+function genbankToJson(string, options) {
   options = options || {};
   var inclusive1BasedStart = options.inclusive1BasedStart;
   var inclusive1BasedEnd = options.inclusive1BasedEnd;
@@ -213,7 +206,8 @@ function genbankToJson(string, onFileParsedUnwrapped, options) {
     endSeq();
   }
   //call the callback
-  onFileParsed(resultsArray, options);
+  return validateSequenceArray(flattenSequenceArray(resultsArray), options);
+  //before we call the onFileParsed callback, we need to flatten the sequence, and convert the old sequence data to the new data type
 
   function endSeq() {
     //do some post processing clean-up
@@ -589,4 +583,4 @@ function getLengthOfWhiteSpaceBeforeStartOfLetters(string) {
   }
 }
 
-module.exports = addPromiseOption(genbankToJson);
+module.exports = genbankToJson;

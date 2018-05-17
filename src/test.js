@@ -8,6 +8,5 @@ const genbank = fs.readFileSync(
   'utf-8'
 );
 
-parser(genbank, function(result) {
-  console.log(result);
-});
+const result = parser(genbank);
+console.log(result);
