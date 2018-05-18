@@ -7,7 +7,7 @@ Array [
     "parsedSequence": Object {
       "accession": "",
       "circular": true,
-      "date": "Wed Jan 18 2017 00:00:00 GMT+0100 (CET)",
+      "date": 1484694000000,
       "definition": "Entry vector for transferring a cloned attL-flanked gene to a destination vector in the Gateway(R) system.",
       "features": Array [
         Object {
@@ -229,7 +229,7 @@ Array [
     "parsedSequence": Object {
       "accession": "Z78533",
       "circular": false,
-      "date": "Thu Nov 30 2006 00:00:00 GMT+0100 (CET)",
+      "date": 1164841200000,
       "definition": "C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.",
       "features": Array [
         Object {

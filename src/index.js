@@ -215,7 +215,7 @@ function genbankToJson(string) {
     seq.circular = circular;
     seq.moleculeType = moleculeType;
     seq.genbankDivision = genbankDivision;
-    seq.date = isNaN(date) ? null : date.toString();
+    seq.date = isNaN(date.getTime()) ? null : date.getTime();
     seq.name = locusName;
     seq.size = size;
   }
