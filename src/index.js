@@ -71,7 +71,7 @@ function genbankToJson(string, options) {
 
   try {
     var lines = splitStringIntoLines(string);
-    var fieldType;
+    var fieldName;
     let subFieldType;
     var featureLocationIndentation;
 
@@ -82,28 +82,28 @@ function genbankToJson(string, options) {
 
     for (let line of lines) {
       if (line === null) break;
-      var fieldName = getLineFieldName(line);
+      var lineFieldName = getLineFieldName(line);
       var val = getLineVal(line);
       var isKeyRunon = isKeywordRunon(line);
       var isSubKey = isSubKeyword(line);
       var isKey = isKeyword(line);
 
-      if (fieldName === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
-        fieldType = fieldName;
+      if (lineFieldName === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
+        fieldName = lineFieldName;
       } else if (isSubKey) {
-        subFieldType = fieldName;
+        subFieldType = lineFieldName;
       }
       // IGNORE LINES: DO NOT EVEN PROCESS
-      if (line.trim() === '' || fieldName === ';') {
+      if (line.trim() === '' || lineFieldName === ';') {
         continue;
       }
 
-      if (!hasFoundLocus && fieldType !== genbankAnnotationKey.LOCUS_TAG) {
+      if (!hasFoundLocus && fieldName !== genbankAnnotationKey.LOCUS_TAG) {
         // 'Genbank files must start with a LOCUS tag so this must not be a genbank'
         break;
       }
 
-      switch (fieldType) {
+      switch (fieldName) {
         case genbankAnnotationKey.LOCUS_TAG:
           hasFoundLocus = true;
           parseLocus(line);
@@ -113,31 +113,28 @@ function genbankToJson(string, options) {
           if (val === '') {
             addMessage(
               "Warning: The feature '" +
-                fieldName +
+                lineFieldName +
                 "'' has no location specified. This line has been ignored: line" +
                 line
             );
             break;
           }
-          parseFeatures(line, fieldName, val);
+          parseFeatures(line, lineFieldName, val);
           break;
         case genbankAnnotationKey.ORIGIN_TAG:
-          parseOrigin(line, fieldName);
+          parseOrigin(line, lineFieldName);
           break;
         case genbankAnnotationKey.DEFINITION_TAG:
-          parseMultiLineField(fieldName, line, 'definition');
-          break;
         case genbankAnnotationKey.ACCESSION_TAG:
-          parseMultiLineField(fieldName, line, 'accession');
-          break;
         case genbankAnnotationKey.VERSION_TAG:
-          parseMultiLineField(fieldName, line, 'version');
+        case genbankAnnotationKey.KEYWORDS_TAG:
+          parseMultiLineField(fieldName, line, fieldName.toLowerCase());
           break;
         case genbankAnnotationKey.SOURCE_TAG:
           if (subFieldType === genbankAnnotationKey.ORGANISM_TAG) {
             parseMultiLineField(subFieldType, line, 'organism');
           } else {
-            parseMultiLineField(fieldName, line, 'source');
+            parseMultiLineField(lineFieldName, line, 'source');
           }
           break;
         case genbankAnnotationKey.END_SEQUENCE_TAG:
@@ -146,7 +143,7 @@ function genbankToJson(string, options) {
         default:
           // FOLLOWING FOR KEYWORDS NOT PREVIOUSLY DEFINED IN CASES
           extractExtraLine(line);
-          if (fieldName === 'BASE') {
+          if (lineFieldName === 'BASE') {
             // do nothing;              // BLANK LINES || line with ;;;;;;;;;  || "BASE COUNT"
             // console.warn("Parsing GenBank File: This line with BaseCount has been ignored: " + line);
             addMessage(
@@ -445,13 +442,13 @@ function genbankToJson(string, options) {
 
   function getFieldValue(field, line) {
     let value = line.replace(/^\s*/, '');
-    if (line.indexOf(field) === 0) {
+    if (value.indexOf(field) === 0) {
       value = value.replace(field, '');
     }
     return value.trim();
   }
 
-  function parseMultiLineField(field, line, resultKey) {
+  function parseMultiLineField(fieldName, line, resultKey) {
     let fieldValue = getFieldValue(fieldName, line);
     result.parsedSequence[resultKey] = result.parsedSequence[resultKey]
       ? result.parsedSequence[resultKey] + ' '
