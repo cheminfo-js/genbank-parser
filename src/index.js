@@ -90,6 +90,7 @@ function genbankToJson(string, options) {
 
       if (lineFieldName === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
         fieldName = lineFieldName;
+        subFieldType = null;
       } else if (isSubKey) {
         subFieldType = lineFieldName;
       }
@@ -136,6 +137,14 @@ function genbankToJson(string, options) {
           } else {
             parseMultiLineField(lineFieldName, line, 'source');
           }
+          break;
+        case genbankAnnotationKey.REFERENCE_TAG:
+          if (lineFieldName === genbankAnnotationKey.REFERENCE_TAG) {
+            const ref = result.parsedSequence.references || [];
+            result.parsedSequence.references = ref;
+            ref.push({});
+          }
+          parseReference(line, subFieldType);
           break;
         case genbankAnnotationKey.END_SEQUENCE_TAG:
           endSeq();
@@ -265,6 +274,29 @@ function genbankToJson(string, options) {
     }
     result.parsedSequence.date = date;
     result.parsedSequence.circular = !linear;
+  }
+
+  function removeFieldName(fieldName, line) {
+    line = line.replace(/^\s*/, '');
+    if (line.indexOf(fieldName) === 0) {
+      line = line.replace(fieldName, '');
+    }
+    return line.trim();
+  }
+
+  function parseReference(line, subType) {
+    const refs = result.parsedSequence.references;
+    let lastRef = refs[refs.length - 1];
+    if (!subType) {
+      parseMultiLineField(
+        genbankAnnotationKey.REFERENCE_TAG,
+        line,
+        'description',
+        lastRef
+      );
+    } else {
+      parseMultiLineField(subType, line, subType.toLowerCase(), lastRef);
+    }
   }
 
   function extractExtraLine(line) {
@@ -440,20 +472,11 @@ function genbankToJson(string, options) {
     return arr[0];
   }
 
-  function getFieldValue(field, line) {
-    let value = line.replace(/^\s*/, '');
-    if (value.indexOf(field) === 0) {
-      value = value.replace(field, '');
-    }
-    return value.trim();
-  }
-
-  function parseMultiLineField(fieldName, line, resultKey) {
-    let fieldValue = getFieldValue(fieldName, line);
-    result.parsedSequence[resultKey] = result.parsedSequence[resultKey]
-      ? result.parsedSequence[resultKey] + ' '
-      : '';
-    result.parsedSequence[resultKey] += fieldValue;
+  function parseMultiLineField(fieldName, line, resultKey, r) {
+    r = r || result.parsedSequence;
+    let fieldValue = removeFieldName(fieldName, line);
+    r[resultKey] = r[resultKey] ? r[resultKey] + ' ' : '';
+    r[resultKey] += fieldValue;
   }
 
   function getLineVal(line) {
