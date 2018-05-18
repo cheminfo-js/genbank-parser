@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 
@@ -10,3 +12,4 @@ const genbank = fs.readFileSync(
 
 const result = parser(genbank);
 console.log(JSON.stringify(result[0], null, 2));
+console.log(result.length);

@@ -201,7 +201,9 @@ function genbankToJson(string) {
   function parseLocus(line) {
     result = createInitialSequence();
     line = removeFieldName(genbankAnnotationKey.LOCUS_TAG, line);
-    const m = line.match(/^(.+)\s+(\d+)\s+bp\s+(.+)\s+(.+)\s+(.+)\s+(.+)$/);
+    const m = line.match(
+      /^([^\s]+)\s+(\d+)\s+bp\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)$/
+    );
     let locusName = m[1];
     let size = +m[2];
     let moleculeType = m[3];
