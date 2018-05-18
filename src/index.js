@@ -14,29 +14,60 @@ function genbankToJson(string, options) {
   var result;
   var currentFeatureNote;
 
+  // Genbank specification: https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html
   var genbankAnnotationKey = {
+    // Contains in order: locus name, sequence length, molecule type (e.g. DNA), genbank division (see 1-18 below), modification date
+    // locus definition has changed with time, use accession number for a unique identifier
     LOCUS_TAG: 'LOCUS',
     DEFINITION_TAG: 'DEFINITION',
+    // Accession tag
+    // Example: Z78533
     ACCESSION_TAG: 'ACCESSION',
+    // The version tag contains 2 informations
+    // The accession number with a revision
+    // The GI (GenInfo Identifier), a ncbi sequential number
+    // Example: Z78533.1  GI:2765658
+    // Unicity garanteed with respect to sequence. If 1 nucleotide changes, the version is different.
     VERSION_TAG: 'VERSION',
     KEYWORDS_TAG: 'KEYWORDS',
     //SEGMENT_TAG:"SEGMENT"
+    // Source is free text
     SOURCE_TAG: 'SOURCE',
     ORGANISM_TAG: 'ORGANISM',
     REFERENCE_TAG: 'REFERENCE',
     AUTHORS_TAG: 'AUTHORS',
     CONSORTIUM_TAG: 'CONSRTM',
     TITLE_TAG: 'TITLE',
+    // Can be multiple journal tags
     JOURNAL_TAG: 'JOURNAL',
     PUBMED_TAG: 'PUBMED',
     REMARK_TAG: 'REMARK',
-    COMMENT_TAG: 'COMMENT',
     FEATURES_TAG: 'FEATURES',
     BASE_COUNT_TAG: 'BASE COUNT',
     //CONTIG_TAG: "CONTIG"
     ORIGIN_TAG: 'ORIGIN',
     END_SEQUENCE_TAG: '//'
   };
+
+  // Genbank divisions
+  //   1. PRI - primate sequences
+  //   2. ROD - rodent sequences
+  //   3. MAM - other mammalian sequences
+  //   4. VRT - other vertebrate sequences
+  //   5. INV - invertebrate sequences
+  //   6. PLN - plant, fungal, and algal sequences
+  //   7. BCT - bacterial sequences
+  //   8. VRL - viral sequences
+  //   9. PHG - bacteriophage sequences
+  // 10. SYN - synthetic sequences
+  // 11. UNA - unannotated sequences
+  // 12. EST - EST sequences (expressed sequence tags)
+  // 13. PAT - patent sequences
+  // 14. STS - STS sequences (sequence tagged sites)
+  // 15. GSS - GSS sequences (genome survey sequences)
+  // 16. HTG - HTG sequences (high-throughput genomic sequences)
+  // 17. HTC - unfinished high-throughput cDNA sequencing
+  // 18. ENV - environmental sampling sequences
 
   try {
     var lines = splitStringIntoLines(string);
@@ -48,10 +79,8 @@ function genbankToJson(string, options) {
     }
     var hasFoundLocus = false;
 
-    lines.some(function(line) {
-      if (line === null) {
-        return true; //break the some loop
-      }
+    for (let line of lines) {
+      if (line === null) break;
       var key = getLineKey(line);
       var val = getLineVal(line);
       var isKeyRunon = isKeywordRunon(line);
@@ -59,38 +88,23 @@ function genbankToJson(string, options) {
       var isKey = isKeyword(line);
 
       //only set a new LINETYPE in the case that we've encountered a key that warrants it.
-      if (key === 'LOCUS') {
-        LINETYPE = key;
-      } else if (key === 'REFERENCE') {
-        LINETYPE = key;
-      } else if (key === 'FEATURES') {
-        LINETYPE = key;
-      } else if (key === 'ORIGIN') {
-        LINETYPE = key;
-      } else if (key === '//') {
-        LINETYPE = key;
-      } else if (isKey === true) {
+      if (key === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
         LINETYPE = key;
       }
-
       // IGNORE LINES: DO NOT EVEN PROCESS
       if (line.trim() === '' || key === ';') {
-        //tnr: don't add the following message because it is not particularly informative
-        // addMessage(
-        //     "Warning: Empty line, or ';' detected. Ignoring line: " +
-        //     line);
-        return false; // go to next line
+        continue;
       }
 
       if (!hasFoundLocus && LINETYPE !== genbankAnnotationKey.LOCUS_TAG) {
         // 'Genbank files must start with a LOCUS tag so this must not be a genbank'
-        return true; //break the some loop
+        break;
       }
 
       switch (LINETYPE) {
         case genbankAnnotationKey.LOCUS_TAG:
           hasFoundLocus = true;
-          parseLocus(line, key, val);
+          parseLocus(line);
           break;
         case genbankAnnotationKey.FEATURES_TAG:
           //If no location is specified, exclude feature and return messages
@@ -108,36 +122,17 @@ function genbankToJson(string, options) {
         case genbankAnnotationKey.ORIGIN_TAG:
           parseOrigin(line, key);
           break;
+        case genbankAnnotationKey.DEFINITION_TAG:
+          let fieldValue = getFieldValue(key, line);
+          result.parsedSequence.definition = result.parsedSequence.definition
+            ? result.parsedSequence.definition + ' '
+            : '';
+          result.parsedSequence.definition += fieldValue;
+          break;
         case genbankAnnotationKey.END_SEQUENCE_TAG:
           endSeq();
           break;
-        case 'COMMENT':
-          line = line.replace(/COMMENT/, '');
-          line = line.trim();
-          if (result.parsedSequence) {
-            if (!result.parsedSequence.comments) {
-              result.parsedSequence.comments = [];
-            }
-            if (line.indexOf('teselagen_unique_id:') > -1) {
-              //capture the special comment
-              result.parsedSequence.teselagen_unique_id = line
-                .replace(/ /g, '')
-                .replace('teselagen_unique_id:', '');
-            } else if (line.indexOf('library:') > -1) {
-              result.parsedSequence.library = line
-                .replace(/ /g, '')
-                .replace('library:', '');
-            } else if (line.indexOf('description:') > -1) {
-              result.parsedSequence.description = line
-                .trim()
-                .replace('description: ', '');
-            } else {
-              result.parsedSequence.comments.push(line);
-            }
-          } else {
-            throw 'no sequence yet created upon which to extract an extra line!';
-          }
-          break;
+
         default:
           // FOLLOWING FOR KEYWORDS NOT PREVIOUSLY DEFINED IN CASES
           extractExtraLine(line);
@@ -164,7 +159,7 @@ function genbankToJson(string, options) {
             addMessage('Warning: This line has been ignored: ' + line);
           }
       }
-    });
+    }
   } catch (e) {
     //catch any errors and set the result
     console.error('Error trying to parse file as .gb:', e);
@@ -180,9 +175,7 @@ function genbankToJson(string, options) {
     //so we call endSeq here
     endSeq();
   }
-  //call the callback
   return validateSequenceArray(flattenSequenceArray(resultsArray), options);
-  //before we call the onFileParsed callback, we need to flatten the sequence, and convert the old sequence data to the new data type
 
   function endSeq() {
     //do some post processing clean-up
@@ -438,6 +431,14 @@ function genbankToJson(string, options) {
     }
 
     return arr[0];
+  }
+
+  function getFieldValue(field, line) {
+    let value = line.replace(/^\s*/, '');
+    if (line.indexOf(field) === 0) {
+      value = value.replace(field, '');
+    }
+    return value.trim();
   }
 
   function getLineVal(line) {

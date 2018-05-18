@@ -42,9 +42,6 @@ module.exports = function validateSequence(
   if (!sequence.extraLines) {
     sequence.extraLines = [];
   }
-  if (!sequence.comments) {
-    sequence.comments = [];
-  }
   const oldName = sequence.name;
   if (reformatSeqName) {
     sequence.name = NameUtils.reformatName(sequence.name);
