@@ -1,13 +1,13 @@
-const constants = require('./constants');
-module.exports = function createInitialSequence(options) {
-    options = options || {}
-    return {
-        messages: [],
-        success: true,
-        parsedSequence: {
-            features: [],
-            name: (options.fileName && options.fileName.replace(/\.[^/.]+$/, "")) || constants.untitledSequenceName,
-            sequence: ''
-        }
-    };
-}
+'use strict';
+
+module.exports = function createInitialSequence() {
+  return {
+    messages: [],
+    success: true,
+    parsedSequence: {
+      features: [],
+      name: 'Untitled sequence',
+      sequence: ''
+    }
+  };
+};

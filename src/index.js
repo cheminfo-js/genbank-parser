@@ -1,15 +1,11 @@
+/* eslint no-div-regex: 0*/
+
 'use strict';
 
-var flattenSequenceArray = require('./utils/flattenSequenceArray');
-var validateSequenceArray = require('./utils/validateSequenceArray');
 var splitStringIntoLines = require('./utils/splitStringIntoLines.js');
 var createInitialSequence = require('./utils/createInitialSequence');
 
-function genbankToJson(string, options) {
-  options = options || {};
-  var inclusive1BasedStart = options.inclusive1BasedStart;
-  var inclusive1BasedEnd = options.inclusive1BasedEnd;
-
+function genbankToJson(string) {
   var resultsArray = [];
   var result;
   var currentFeatureNote;
@@ -30,7 +26,7 @@ function genbankToJson(string, options) {
     // Unicity garanteed with respect to sequence. If 1 nucleotide changes, the version is different.
     VERSION_TAG: 'VERSION',
     KEYWORDS_TAG: 'KEYWORDS',
-    //SEGMENT_TAG:"SEGMENT"
+    // SEGMENT_TAG:"SEGMENT"
     // Source is free text
     SOURCE_TAG: 'SOURCE',
     ORGANISM_TAG: 'ORGANISM',
@@ -44,7 +40,7 @@ function genbankToJson(string, options) {
     REMARK_TAG: 'REMARK',
     FEATURES_TAG: 'FEATURES',
     BASE_COUNT_TAG: 'BASE COUNT',
-    //CONTIG_TAG: "CONTIG"
+    // CONTIG_TAG: "CONTIG"
     ORIGIN_TAG: 'ORIGIN',
     END_SEQUENCE_TAG: '//'
   };
@@ -84,7 +80,6 @@ function genbankToJson(string, options) {
       if (line === null) break;
       var lineFieldName = getLineFieldName(line);
       var val = getLineVal(line);
-      var isKeyRunon = isKeywordRunon(line);
       var isSubKey = isSubKeyword(line);
       var isKey = isKeyword(line);
 
@@ -110,13 +105,10 @@ function genbankToJson(string, options) {
           parseLocus(line);
           break;
         case genbankAnnotationKey.FEATURES_TAG:
-          //If no location is specified, exclude feature and return messages
+          // If no location is specified, exclude feature and return messages
           if (val === '') {
             addMessage(
-              "Warning: The feature '" +
-                lineFieldName +
-                "'' has no location specified. This line has been ignored: line" +
-                line
+              `Warning: The feature '${lineFieldName}'' has no location specified. This line has been ignored: line${line}`
             );
             break;
           }
@@ -151,52 +143,29 @@ function genbankToJson(string, options) {
           break;
         default:
           // FOLLOWING FOR KEYWORDS NOT PREVIOUSLY DEFINED IN CASES
-          extractExtraLine(line);
-          if (lineFieldName === 'BASE') {
-            // do nothing;              // BLANK LINES || line with ;;;;;;;;;  || "BASE COUNT"
-            // console.warn("Parsing GenBank File: This line with BaseCount has been ignored: " + line);
-            addMessage(
-              'Warning: This BaseCount line has been ignored: ' + line
-            );
-            break;
-          } else if (isKey) {
-            // REGULAR KEYWORDS (NOT LOCUS/FEATURES/ORIGIN) eg VERSION, ACCESSION, SOURCE, REFERENCE
-            // lastObj = parseKeyword(line, gb);
-          } else if (isSubKey) {
-            // REGULAR SUBKEYWORD, NOT FEATURE eg AUTHOR, ORGANISM
-            // tmp = gb.getLastKeyword();
-            // lastObj = parseSubKeyword(tmp, line, gb);
-          } else if (isKeyRunon) {
-            // RUNON LINES FOR NON-FEATURES
-            // lastObj.setValue(lastObj.getValue() + Teselagen.StringUtil.rpad("\n"," ",13) + Ext.String.trim(line));
-            // lastObj.appendValue(Teselagen.StringUtil.rpad("\n"," ",13) + Ext.String.trim(line), gb);
-          } else {
-            // console.warn("Parsing GenBank File: This line has been ignored: " + line);
-            addMessage('Warning: This line has been ignored: ' + line);
-          }
+          addMessage(`Warning: This line has been ignored: ${line}`);
       }
     }
   } catch (e) {
-    //catch any errors and set the result
-    console.error('Error trying to parse file as .gb:', e);
+    // catch any errors and set the result
     result = {
       success: false,
       messages: ['Import Error: Invalid File']
     };
   }
 
-  //catch the case where we've successfully started a sequence and parsed it, but endSeq isn't called correctly
+  // catch the case where we've successfully started a sequence and parsed it, but endSeq isn't called correctly
   if (result.success && resultsArray[resultsArray.length - 1] !== result) {
-    //current result isn't in resultsArray yet
-    //so we call endSeq here
+    // current result isn't in resultsArray yet
+    // so we call endSeq here
     endSeq();
   }
-  return validateSequenceArray(flattenSequenceArray(resultsArray), options);
+  return resultsArray;
 
   function endSeq() {
-    //do some post processing clean-up
+    // do some post processing clean-up
     postProcessCurSeq();
-    //push the result into the resultsArray
+    // push the result into the resultsArray
     resultsArray.push(result);
   }
 
@@ -208,7 +177,7 @@ function genbankToJson(string, options) {
 
   function addMessage(msg) {
     if (result.messages.indexOf(msg === -1)) {
-      return result.messages.push(msg);
+      result.messages.push(msg);
     }
   }
 
@@ -224,56 +193,29 @@ function genbankToJson(string, options) {
 
   function parseOrigin(line, key) {
     if (key !== genbankAnnotationKey.ORIGIN_TAG) {
-      var new_line = line.replace(/[\s]*[0-9]*/g, '');
-      result.parsedSequence.sequence += new_line;
+      var newLine = line.replace(/[\s]*[0-9]*/g, '');
+      result.parsedSequence.sequence += newLine;
     }
   }
 
   function parseLocus(line) {
-    result = createInitialSequence(options);
-    var locusName;
-    var linear;
-    var date;
-    var lineArr = line.split(/[\s]+/g);
+    result = createInitialSequence();
+    line = removeFieldName(genbankAnnotationKey.LOCUS_TAG, line);
+    const m = line.match(/^(.+)\s+(\d+)\s+bp\s+(.+)\s+(.+)\s+(.+)\s+(.+)$/);
+    let locusName = m[1];
+    let size = +m[2];
+    let moleculeType = m[3];
+    let circular = m[4] === 'circular';
+    let genbankDivision = m[5];
+    let date = new Date(m[6]);
 
-    if (lineArr.length <= 1) {
-      console.warn(
-        'Parsing GenBank File: WARNING! Locus line contains no values!'
-      );
-      // TODO
-      addMessage('Import Warning: Locus line contains no values: ' + line);
-    }
-    locusName = lineArr[1];
-
-    // Linear vs Circular?
-    linear = true;
-    for (var i = 1; i < lineArr.length; i++) {
-      if (lineArr[i].match(/circular/gi)) {
-        linear = false;
-      }
-    }
-
-    // Date and Div
-    // Date is in format:1-APR-2012
-    for (var j = 1; j < lineArr.length; j++) {
-      if (lineArr[j].match(/-[A-Z]{3}-/g)) {
-        date = lineArr[j];
-      }
-      //tnr: not sure what this is supposed to be doing..
-      // if (lineArr[j].match(/^[A-Z]{3}/g) && lineArr[j].length === 3 && !lineArr[j].match(/DNA|RNA/g)) {
-      //     div = lineArr[j];
-      // }
-    }
-
-    //don't use "exported as a file name unless it is out last option"
-    if (
-      locusName !== 'Exported' ||
-      result.parsedSequence.name === 'Untitled Sequence'
-    ) {
-      result.parsedSequence.name = locusName;
-    }
-    result.parsedSequence.date = date;
-    result.parsedSequence.circular = !linear;
+    const seq = result.parsedSequence;
+    seq.circular = circular;
+    seq.moleculeType = moleculeType;
+    seq.genbankDivision = genbankDivision;
+    seq.date = isNaN(date) ? null : date;
+    seq.name = locusName;
+    seq.size = size;
   }
 
   function removeFieldName(fieldName, line) {
@@ -299,16 +241,6 @@ function genbankToJson(string, options) {
     }
   }
 
-  function extractExtraLine(line) {
-    if (result.parsedSequence) {
-      if (!result.parsedSequence.extraLines) {
-        result.parsedSequence.extraLines = [];
-      }
-      result.parsedSequence.extraLines.push(line);
-    } else {
-      throw 'no sequence yet created upon which to extract an extra line!';
-    }
-  }
   var lastLineWasFeaturesTag;
   var lastLineWasLocation;
   function parseFeatures(line, key, val) {
@@ -320,28 +252,28 @@ function genbankToJson(string, options) {
     }
 
     if (lastLineWasFeaturesTag) {
-      //we need to get the indentation of feature locations
+      // we need to get the indentation of feature locations
       featureLocationIndentation = getLengthOfWhiteSpaceBeforeStartOfLetters(
         line
       );
-      //set lastLineWasFeaturesTag to false
+      // set lastLineWasFeaturesTag to false
       lastLineWasFeaturesTag = false;
     }
 
     // FOR LOCATION && QUALIFIER LINES
     if (isFeatureLineRunon(line, featureLocationIndentation)) {
-      //the line is a continuation of the above line
+      // the line is a continuation of the above line
       if (lastLineWasLocation) {
-        //the last line was a location, so the run-on line is expected to be a feature location as well
+        // the last line was a location, so the run-on line is expected to be a feature location as well
         parseFeatureLocation(line.trim());
         lastLineWasLocation = true;
       } else {
-        //the last line was a note
+        // the last line was a note
         if (currentFeatureNote) {
-          //append to the currentFeatureNote
+          // append to the currentFeatureNote
           currentFeatureNote[
             currentFeatureNote.length - 1
-          ] += line.trim().replace(/\"/g, '');
+          ] += line.trim().replace(/"/g, '');
         }
         lastLineWasLocation = false;
       }
@@ -350,15 +282,13 @@ function genbankToJson(string, options) {
       if (isNote(line)) {
         // is a new Feature Element (e.g. source, CDS) in the form of  "[\s] KEY  SEQLOCATION"
         // is a FeatureQualifier in the /KEY="BLAH" format; could be multiple per Element
-        //Check that feature did not get skipped for missing location
+        // Check that feature did not get skipped for missing location
         if (getCurrentFeature()) {
           parseFeatureNote(line);
           lastLineWasLocation = false;
-        } else {
-          return;
         }
       } else {
-        //the line is a location, so we make a new feature from it
+        // the line is a location, so we make a new feature from it
         if (val.match(/complement/g)) {
           strand = -1;
         } else {
@@ -385,7 +315,7 @@ function genbankToJson(string, options) {
 
   function isNote(line) {
     var qual = false;
-    /*if (line.charAt(21) === "/") {//T.H. Hard coded method
+    /* if (line.charAt(21) === "/") {//T.H. Hard coded method
            qual = true;
          }*/
     if (
@@ -406,27 +336,12 @@ function genbankToJson(string, options) {
   function parseFeatureLocation(locStr) {
     locStr = locStr.trim();
     var locArr = [];
-    locStr.replace(/(\d+)/g, function(string, match) {
+    locStr.replace(/(\d+)/g, function (string, match) {
       locArr.push(match);
     });
-    for (var i = 0; i < locArr.length; i += 2) {
-      var start = parseInt(locArr[i]) - (inclusive1BasedStart ? 0 : 1);
-      var end = parseInt(locArr[i + 1]) - (inclusive1BasedEnd ? 0 : 1);
-      if (isNaN(end)) {
-        //if no end is supplied, assume that the end should be set to whatever the start is
-        //this makes a feature location passed as:
-        //147
-        //function like:
-        //147..147
-        end = start;
-      }
-      var location = {
-        start: start,
-        end: end
-      };
-      var feat = getCurrentFeature();
-      feat.locations.push(location);
-    }
+    let feat = getCurrentFeature();
+    feat.start = +locArr[0];
+    feat.end = +locArr[1];
   }
 
   function parseFeatureNote(line) {
@@ -434,26 +349,26 @@ function genbankToJson(string, options) {
 
     newLine = line.trim();
     newLine = newLine.replace(/^\/|"$/g, '');
-    lineArr = newLine.split(/=\"|=/);
+    lineArr = newLine.split(/="|=/);
 
     var val = lineArr[1];
 
     if (val) {
       val = val.replace(/\\/g, ' ');
 
-      if (line.match(/=\"/g)) {
-        val = val.replace(/\".*/g, '');
+      if (line.match(/="/g)) {
+        val = val.replace(/".*/g, '');
       } else if (val.match(/^\d+$/g)) {
-        val = parseInt(val);
+        val = +val;
       }
     }
     var key = lineArr[0];
     var currentNotes = getCurrentFeature().notes;
     if (currentNotes[key]) {
-      //array already exists, so push value into it
+      // array already exists, so push value into it
       currentNotes[key].push(val);
     } else {
-      //array doesn't exist yet, so create it and populate it with the value
+      // array doesn't exist yet, so create it and populate it with the value
       currentNotes[key] = [val];
     }
     currentFeatureNote = currentNotes[key];
@@ -475,7 +390,7 @@ function genbankToJson(string, options) {
   function parseMultiLineField(fieldName, line, resultKey, r) {
     r = r || result.parsedSequence;
     let fieldValue = removeFieldName(fieldName, line);
-    r[resultKey] = r[resultKey] ? r[resultKey] + ' ' : '';
+    r[resultKey] = r[resultKey] ? `${r[resultKey]} ` : '';
     r[resultKey] += fieldValue;
   }
 
@@ -508,16 +423,6 @@ function genbankToJson(string, options) {
     return isSubKey;
   }
 
-  function isKeywordRunon(line) {
-    var runon;
-    if (line.substr(0, 10).match(/[\s]{10}/)) {
-      runon = true;
-    } else {
-      runon = false;
-    }
-    return runon;
-  }
-
   function postProcessGenbankFeature(feat) {
     if (feat.notes.label) {
       feat.name = feat.notes.label[0];
@@ -532,12 +437,12 @@ function genbankToJson(string, options) {
     } else if (feat.notes.locus_tag) {
       feat.name = feat.notes.locus_tag[0];
     } else if (feat.notes.note) {
-      //if the name is coming from a note, shorten the name to 100 chars long
+      // if the name is coming from a note, shorten the name to 100 chars long
       feat.name = feat.notes.note[0].substr(0, 100);
     } else {
       feat.name = '';
     }
-    //shorten the name to a reasonable length if necessary and warn the user about it
+    // shorten the name to a reasonable length if necessary and warn the user about it
     var oldName = feat.name;
     if (feat.name !== 0 && !feat.name) {
       feat.name = 'Untitled Feature';
@@ -554,24 +459,24 @@ function genbankToJson(string, options) {
 function isFeatureLineRunon(line, featureLocationIndentation) {
   var indentationOfLine = getLengthOfWhiteSpaceBeforeStartOfLetters(line);
   if (featureLocationIndentation === indentationOfLine) {
-    //the feature location indentation calculated right after the feature tag
-    //cannot be the same as the indentation of the line
+    // the feature location indentation calculated right after the feature tag
+    // cannot be the same as the indentation of the line
     //
-    //FEATURES             Location/Qualifiers
+    // FEATURES             Location/Qualifiers
     //     rep_origin      complement(1074..3302)
-    //01234  <-- this is the indentation we're talking about
-    return false; //the line is NOT a run on
+    // 01234  <-- this is the indentation we're talking about
+    return false; // the line is NOT a run on
   }
 
   var trimmed = line.trim();
   if (trimmed.charAt(0).match(/\//)) {
-    //the first char in the trimmed line cannot be a /
-    return false; //the line is NOT a run on
+    // the first char in the trimmed line cannot be a /
+    return false; // the line is NOT a run on
   }
-  //the line is a run on
+  // the line is a run on
   return true;
-  //run-on line example:
-  //FEATURES             Location/Qualifiers
+  // run-on line example:
+  // FEATURES             Location/Qualifiers
   //     rep_origin      complement(1074..3302)
   //                 /label=pSC101**
   //                 /note="REP_ORIGIN REP_ORIGIN pSC101* aka pMPP6, gives plasm

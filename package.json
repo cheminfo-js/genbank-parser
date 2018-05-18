@@ -17,6 +17,10 @@
     "validate.io-nonnegative-integer-array": "^1.0.1"
   },
   "devDependencies": {
-    "cheminfo-tools": "^1.20.2"
+    "cheminfo-tools": "^1.20.2",
+    "eslint": "^4.19.1",
+    "eslint-config-cheminfo": "^1.17.4",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jest": "^21.15.1"
   }
 }
