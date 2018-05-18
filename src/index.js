@@ -71,7 +71,8 @@ function genbankToJson(string, options) {
 
   try {
     var lines = splitStringIntoLines(string);
-    var LINETYPE = false;
+    var fieldType;
+    let subFieldType;
     var featureLocationIndentation;
 
     if (lines === null) {
@@ -81,27 +82,28 @@ function genbankToJson(string, options) {
 
     for (let line of lines) {
       if (line === null) break;
-      var key = getLineKey(line);
+      var fieldName = getLineFieldName(line);
       var val = getLineVal(line);
       var isKeyRunon = isKeywordRunon(line);
       var isSubKey = isSubKeyword(line);
       var isKey = isKeyword(line);
 
-      //only set a new LINETYPE in the case that we've encountered a key that warrants it.
-      if (key === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
-        LINETYPE = key;
+      if (fieldName === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
+        fieldType = fieldName;
+      } else if (isSubKey) {
+        subFieldType = fieldName;
       }
       // IGNORE LINES: DO NOT EVEN PROCESS
-      if (line.trim() === '' || key === ';') {
+      if (line.trim() === '' || fieldName === ';') {
         continue;
       }
 
-      if (!hasFoundLocus && LINETYPE !== genbankAnnotationKey.LOCUS_TAG) {
+      if (!hasFoundLocus && fieldType !== genbankAnnotationKey.LOCUS_TAG) {
         // 'Genbank files must start with a LOCUS tag so this must not be a genbank'
         break;
       }
 
-      switch (LINETYPE) {
+      switch (fieldType) {
         case genbankAnnotationKey.LOCUS_TAG:
           hasFoundLocus = true;
           parseLocus(line);
@@ -111,32 +113,40 @@ function genbankToJson(string, options) {
           if (val === '') {
             addMessage(
               "Warning: The feature '" +
-                key +
+                fieldName +
                 "'' has no location specified. This line has been ignored: line" +
                 line
             );
             break;
           }
-          parseFeatures(line, key, val);
+          parseFeatures(line, fieldName, val);
           break;
         case genbankAnnotationKey.ORIGIN_TAG:
-          parseOrigin(line, key);
+          parseOrigin(line, fieldName);
           break;
         case genbankAnnotationKey.DEFINITION_TAG:
-          let fieldValue = getFieldValue(key, line);
-          result.parsedSequence.definition = result.parsedSequence.definition
-            ? result.parsedSequence.definition + ' '
-            : '';
-          result.parsedSequence.definition += fieldValue;
+          parseMultiLineField(fieldName, line, 'definition');
+          break;
+        case genbankAnnotationKey.ACCESSION_TAG:
+          parseMultiLineField(fieldName, line, 'accession');
+          break;
+        case genbankAnnotationKey.VERSION_TAG:
+          parseMultiLineField(fieldName, line, 'version');
+          break;
+        case genbankAnnotationKey.SOURCE_TAG:
+          if (subFieldType === genbankAnnotationKey.ORGANISM_TAG) {
+            parseMultiLineField(subFieldType, line, 'organism');
+          } else {
+            parseMultiLineField(fieldName, line, 'source');
+          }
           break;
         case genbankAnnotationKey.END_SEQUENCE_TAG:
           endSeq();
           break;
-
         default:
           // FOLLOWING FOR KEYWORDS NOT PREVIOUSLY DEFINED IN CASES
           extractExtraLine(line);
-          if (key === 'BASE') {
+          if (fieldName === 'BASE') {
             // do nothing;              // BLANK LINES || line with ;;;;;;;;;  || "BASE COUNT"
             // console.warn("Parsing GenBank File: This line with BaseCount has been ignored: " + line);
             addMessage(
@@ -420,7 +430,7 @@ function genbankToJson(string, options) {
     currentFeatureNote = currentNotes[key];
   }
 
-  function getLineKey(line) {
+  function getLineFieldName(line) {
     var arr;
     line = line.replace(/^[\s]*/, '');
 
@@ -439,6 +449,14 @@ function genbankToJson(string, options) {
       value = value.replace(field, '');
     }
     return value.trim();
+  }
+
+  function parseMultiLineField(field, line, resultKey) {
+    let fieldValue = getFieldValue(fieldName, line);
+    result.parsedSequence[resultKey] = result.parsedSequence[resultKey]
+      ? result.parsedSequence[resultKey] + ' '
+      : '';
+    result.parsedSequence[resultKey] += fieldValue;
   }
 
   function getLineVal(line) {

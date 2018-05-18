@@ -4,7 +4,7 @@ const path = require('path');
 const parser = require('../src/index');
 
 const genbank = fs.readFileSync(
-  path.join(__dirname, '../fixtures/gen1.gb'),
+  path.join(__dirname, '../fixtures/gen2.gb'),
   'utf-8'
 );
 
