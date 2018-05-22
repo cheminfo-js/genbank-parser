@@ -7,9 +7,14 @@
     "eslint": "eslint src",
     "eslint-fix": "eslint src --fix",
     "build": "cheminfo build",
-    "test": "jest"
+    "test": "jest --coverage && npm run eslint",
+    "test-coverage": "jest --coverage",
+    "test-only": "jest"
   },
-  "keywords": ["genbank", "parser"],
+  "keywords": [
+    "genbank",
+    "parser"
+  ],
   "author": "Daniel Kostro <kostro.d@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -19,5 +24,8 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jest": "^21.15.1",
     "jest": "^22.4.4"
+  },
+  "dependencies": {
+    "momentjs": "^2.0.0"
   }
 }

@@ -4,6 +4,7 @@
 
 var splitStringIntoLines = require('./utils/splitStringIntoLines.js');
 var createInitialSequence = require('./utils/createInitialSequence');
+const MONTHS = require('./utils/months');
 
 function genbankToJson(string) {
   var resultsArray = [];
@@ -209,13 +210,21 @@ function genbankToJson(string) {
     let moleculeType = m[3];
     let circular = m[4] === 'circular';
     let genbankDivision = m[5];
-    let date = new Date(m[6]);
 
     const seq = result.parsedSequence;
     seq.circular = circular;
     seq.moleculeType = moleculeType;
     seq.genbankDivision = genbankDivision;
-    seq.date = isNaN(date.getTime()) ? null : date.getTime();
+    const dateMatch = m[6].match(/^(\d{2})-(.{3})-(\d{4})$/);
+    const date = new Date();
+    date.setFullYear(+dateMatch[3]);
+    date.setUTCMonth(MONTHS.indexOf(dateMatch[2].toUpperCase()));
+    date.setDate(+dateMatch[1]);
+    date.setUTCHours(12);
+    date.setMinutes(0);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+    seq.date = date.getTime();
     seq.name = locusName;
     seq.size = size;
   }
