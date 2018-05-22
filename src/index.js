@@ -66,93 +66,85 @@ function genbankToJson(string) {
   // 17. HTC - unfinished high-throughput cDNA sequencing
   // 18. ENV - environmental sampling sequences
 
-  try {
-    var lines = splitStringIntoLines(string);
-    var fieldName;
-    let subFieldType;
-    var featureLocationIndentation;
+  var lines = splitStringIntoLines(string);
+  var fieldName;
+  let subFieldType;
+  var featureLocationIndentation;
 
-    if (lines === null) {
-      addMessage('Import Error: Sequence file is empty');
+  if (lines === null) {
+    addMessage('Import Error: Sequence file is empty');
+  }
+  var hasFoundLocus = false;
+
+  for (let line of lines) {
+    if (line === null) break;
+    var lineFieldName = getLineFieldName(line);
+    var val = getLineVal(line);
+    var isSubKey = isSubKeyword(line);
+    var isKey = isKeyword(line);
+
+    if (lineFieldName === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
+      fieldName = lineFieldName;
+      subFieldType = null;
+    } else if (isSubKey) {
+      subFieldType = lineFieldName;
     }
-    var hasFoundLocus = false;
+    // IGNORE LINES: DO NOT EVEN PROCESS
+    if (line.trim() === '' || lineFieldName === ';') {
+      continue;
+    }
 
-    for (let line of lines) {
-      if (line === null) break;
-      var lineFieldName = getLineFieldName(line);
-      var val = getLineVal(line);
-      var isSubKey = isSubKeyword(line);
-      var isKey = isKeyword(line);
+    if (!hasFoundLocus && fieldName !== genbankAnnotationKey.LOCUS_TAG) {
+      // 'Genbank files must start with a LOCUS tag so this must not be a genbank'
+      break;
+    }
 
-      if (lineFieldName === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
-        fieldName = lineFieldName;
-        subFieldType = null;
-      } else if (isSubKey) {
-        subFieldType = lineFieldName;
-      }
-      // IGNORE LINES: DO NOT EVEN PROCESS
-      if (line.trim() === '' || lineFieldName === ';') {
-        continue;
-      }
-
-      if (!hasFoundLocus && fieldName !== genbankAnnotationKey.LOCUS_TAG) {
-        // 'Genbank files must start with a LOCUS tag so this must not be a genbank'
+    switch (fieldName) {
+      case genbankAnnotationKey.LOCUS_TAG:
+        hasFoundLocus = true;
+        parseLocus(line);
         break;
-      }
-
-      switch (fieldName) {
-        case genbankAnnotationKey.LOCUS_TAG:
-          hasFoundLocus = true;
-          parseLocus(line);
+      case genbankAnnotationKey.FEATURES_TAG:
+        // If no location is specified, exclude feature and return messages
+        if (val === '') {
+          addMessage(
+            `Warning: The feature '${lineFieldName}'' has no location specified. This line has been ignored: line${line}`
+          );
           break;
-        case genbankAnnotationKey.FEATURES_TAG:
-          // If no location is specified, exclude feature and return messages
-          if (val === '') {
-            addMessage(
-              `Warning: The feature '${lineFieldName}'' has no location specified. This line has been ignored: line${line}`
-            );
-            break;
-          }
-          parseFeatures(line, lineFieldName, val);
-          break;
-        case genbankAnnotationKey.ORIGIN_TAG:
-          parseOrigin(line, lineFieldName);
-          break;
-        case genbankAnnotationKey.DEFINITION_TAG:
-        case genbankAnnotationKey.ACCESSION_TAG:
-        case genbankAnnotationKey.VERSION_TAG:
-        case genbankAnnotationKey.KEYWORDS_TAG:
-          parseMultiLineField(fieldName, line, fieldName.toLowerCase());
-          break;
-        case genbankAnnotationKey.SOURCE_TAG:
-          if (subFieldType === genbankAnnotationKey.ORGANISM_TAG) {
-            parseMultiLineField(subFieldType, line, 'organism');
-          } else {
-            parseMultiLineField(lineFieldName, line, 'source');
-          }
-          break;
-        case genbankAnnotationKey.REFERENCE_TAG:
-          if (lineFieldName === genbankAnnotationKey.REFERENCE_TAG) {
-            const ref = result.parsedSequence.references || [];
-            result.parsedSequence.references = ref;
-            ref.push({});
-          }
-          parseReference(line, subFieldType);
-          break;
-        case genbankAnnotationKey.END_SEQUENCE_TAG:
-          endSeq();
-          break;
-        default:
-          // FOLLOWING FOR KEYWORDS NOT PREVIOUSLY DEFINED IN CASES
-          addMessage(`Warning: This line has been ignored: ${line}`);
-      }
+        }
+        parseFeatures(line, lineFieldName, val);
+        break;
+      case genbankAnnotationKey.ORIGIN_TAG:
+        parseOrigin(line, lineFieldName);
+        break;
+      case genbankAnnotationKey.DEFINITION_TAG:
+      case genbankAnnotationKey.ACCESSION_TAG:
+      case genbankAnnotationKey.VERSION_TAG:
+      case genbankAnnotationKey.KEYWORDS_TAG:
+        parseMultiLineField(fieldName, line, fieldName.toLowerCase());
+        break;
+      case genbankAnnotationKey.SOURCE_TAG:
+        if (subFieldType === genbankAnnotationKey.ORGANISM_TAG) {
+          parseMultiLineField(subFieldType, line, 'organism');
+        } else {
+          parseMultiLineField(lineFieldName, line, 'source');
+        }
+        break;
+      case genbankAnnotationKey.REFERENCE_TAG:
+        if (lineFieldName === genbankAnnotationKey.REFERENCE_TAG) {
+          const ref = result.parsedSequence.references || [];
+          result.parsedSequence.references = ref;
+          ref.push({});
+        }
+        parseReference(line, subFieldType);
+        break;
+      case genbankAnnotationKey.END_SEQUENCE_TAG:
+        endSeq();
+        break;
+      default:
+        // FOLLOWING FOR KEYWORDS NOT PREVIOUSLY DEFINED IN CASES
+        addMessage(`Warning: This line has been ignored: ${line}`);
     }
-  } catch (e) {
-    // catch any errors and set the result
-    result = {
-      success: false,
-      messages: ['Import Error: Invalid File']
-    };
   }
 
   // catch the case where we've successfully started a sequence and parsed it, but endSeq isn't called correctly
