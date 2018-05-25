@@ -6,6 +6,7 @@
 # cheminfo-js
 
 Parse genbank files
+
 :warning: The format of the parsed genbank is not stable yet and is subject to changes in future versions. :warning:
 
 ## Usage
