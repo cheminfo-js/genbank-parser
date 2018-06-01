@@ -6,14 +6,13 @@
 # cheminfo-js
 
 Parse genbank files
-
 :warning: The format of the parsed genbank is not stable yet and is subject to changes in future versions. :warning:
 
 ## Usage
 
 ```js
 const fs = require('fs');
-const genbankParser = require('genabank-parser');
+const genbankParser = require('genbank-parser');
 
 const genbank = fs.readFileSync('./genbank.gb', 'utf-8');
 const result = genbankParser(genbank);
