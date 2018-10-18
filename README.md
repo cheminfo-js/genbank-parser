@@ -24,6 +24,14 @@ const result = genbankParser(genbank);
 ## Parsed fields
 
 The parser tries to parse all fields described by the [genbank documentation](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html)
+Additional properties are added:
+At the sequence level:
+
+- `name`: locus name
+
+At the feature level
+
+- `name`: extracted from several possible feature notes. Default is `/label`
 
 ## Example
 
