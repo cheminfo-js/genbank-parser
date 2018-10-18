@@ -21,6 +21,10 @@ const genbank = fs.readFileSync('./genbank.gb', 'utf-8');
 const result = genbankParser(genbank);
 ```
 
+## Parsed fields
+
+The parser tries to parse all fields described by the [genbank documentation](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html)
+
 ## Example
 
 Input genbank
