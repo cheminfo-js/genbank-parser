@@ -84,7 +84,7 @@ ORIGIN
 
 Parsed output
 
-```json
+```js
 [
   {
     messages: [],
@@ -147,7 +147,7 @@ Parsed output
       circular: false,
       moleculeType: 'DNA',
       genbankDivision: 'PLN',
-      date: 1164888000000,
+      date: '2006-11-30T12:00:00.000Z',
       size: 740,
       definition: 'C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.',
       accession: 'Z78533',

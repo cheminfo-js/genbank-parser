@@ -216,7 +216,7 @@ function genbankToJson(string) {
     date.setMinutes(0);
     date.setSeconds(0);
     date.setMilliseconds(0);
-    seq.date = date.getTime();
+    seq.date = date.toISOString();
     seq.name = locusName;
     seq.size = size;
   }
