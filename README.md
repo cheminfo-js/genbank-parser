@@ -5,6 +5,8 @@
 
 # cheminfo-js
 
+This work was based on https://github.com/TeselaGen/ve-sequence-parsers
+
 Parse genbank files
 
 :warning: The format of the parsed genbank is not stable yet and is subject to changes in future versions. :warning:
