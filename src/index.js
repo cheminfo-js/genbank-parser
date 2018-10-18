@@ -2,11 +2,13 @@
 
 'use strict';
 
-var splitStringIntoLines = require('./utils/splitStringIntoLines.js');
-var createInitialSequence = require('./utils/createInitialSequence');
 const MONTHS = require('./utils/months');
 
-function genbankToJson(string) {
+function genbankToJson(sequence) {
+  if (typeof sequence !== 'string') {
+    throw new TypeError('sequence must be a string');
+  }
+
   var resultsArray = [];
   var result;
   var currentFeatureNote;
@@ -66,13 +68,13 @@ function genbankToJson(string) {
   // 17. HTC - unfinished high-throughput cDNA sequencing
   // 18. ENV - environmental sampling sequences
 
-  var lines = splitStringIntoLines(string);
+  var lines = sequence.split(/\r?\n/);
   var fieldName;
   let subFieldType;
   var featureLocationIndentation;
 
   if (lines === null) {
-    addMessage('Import Error: Sequence file is empty');
+    throw new Error('sequence file is empty');
   }
   var hasFoundLocus = false;
 
@@ -105,13 +107,6 @@ function genbankToJson(string) {
         parseLocus(line);
         break;
       case genbankAnnotationKey.FEATURES_TAG:
-        // If no location is specified, exclude feature and return messages
-        if (val === '') {
-          addMessage(
-            `Warning: The feature '${lineFieldName}'' has no location specified. This line has been ignored: line${line}`
-          );
-          break;
-        }
         parseFeatures(line, lineFieldName, val);
         break;
       case genbankAnnotationKey.ORIGIN_TAG:
@@ -132,8 +127,8 @@ function genbankToJson(string) {
         break;
       case genbankAnnotationKey.REFERENCE_TAG:
         if (lineFieldName === genbankAnnotationKey.REFERENCE_TAG) {
-          const ref = result.parsedSequence.references || [];
-          result.parsedSequence.references = ref;
+          const ref = result.references || [];
+          result.references = ref;
           ref.push({});
         }
         parseReference(line, subFieldType);
@@ -142,13 +137,13 @@ function genbankToJson(string) {
         endSeq();
         break;
       default:
-        // FOLLOWING FOR KEYWORDS NOT PREVIOUSLY DEFINED IN CASES
-        addMessage(`Warning: This line has been ignored: ${line}`);
+        // Unhandled tag
+        break;
     }
   }
 
   // catch the case where we've successfully started a sequence and parsed it, but endSeq isn't called correctly
-  if (result.success && resultsArray[resultsArray.length - 1] !== result) {
+  if (resultsArray[resultsArray.length - 1] !== result) {
     // current result isn't in resultsArray yet
     // so we call endSeq here
     endSeq();
@@ -163,23 +158,13 @@ function genbankToJson(string) {
   }
 
   function getCurrentFeature() {
-    return result.parsedSequence.features[
-      result.parsedSequence.features.length - 1
-    ];
-  }
-
-  function addMessage(msg) {
-    if (result.messages.indexOf(msg === -1)) {
-      result.messages.push(msg);
-    }
+    return result.features[result.features.length - 1];
   }
 
   function postProcessCurSeq() {
-    if (result.parsedSequence && result.parsedSequence.features) {
-      for (var i = 0; i < result.parsedSequence.features.length; i++) {
-        result.parsedSequence.features[i] = postProcessGenbankFeature(
-          result.parsedSequence.features[i]
-        );
+    if (result && result.features) {
+      for (var i = 0; i < result.features.length; i++) {
+        result.features[i] = postProcessGenbankFeature(result.features[i]);
       }
     }
   }
@@ -187,12 +172,16 @@ function genbankToJson(string) {
   function parseOrigin(line, key) {
     if (key !== genbankAnnotationKey.ORIGIN_TAG) {
       var newLine = line.replace(/[\s]*[0-9]*/g, '');
-      result.parsedSequence.sequence += newLine;
+      result.sequence += newLine;
     }
   }
 
   function parseLocus(line) {
-    result = createInitialSequence();
+    result = {
+      features: [],
+      name: 'Untitled sequence',
+      sequence: ''
+    };
     line = removeFieldName(genbankAnnotationKey.LOCUS_TAG, line);
     const m = line.match(
       /^([^\s]+)\s+(\d+)\s+bp\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)$/
@@ -203,7 +192,7 @@ function genbankToJson(string) {
     let circular = m[4] === 'circular';
     let genbankDivision = m[5];
 
-    const seq = result.parsedSequence;
+    const seq = result;
     seq.circular = circular;
     seq.moleculeType = moleculeType;
     seq.genbankDivision = genbankDivision;
@@ -230,7 +219,7 @@ function genbankToJson(string) {
   }
 
   function parseReference(line, subType) {
-    const refs = result.parsedSequence.references;
+    const refs = result.references;
     let lastRef = refs[refs.length - 1];
     if (!subType) {
       parseMultiLineField(
@@ -310,7 +299,7 @@ function genbankToJson(string) {
   }
 
   function newFeature() {
-    result.parsedSequence.features.push({
+    result.features.push({
       locations: [],
       notes: {}
     });
@@ -391,7 +380,7 @@ function genbankToJson(string) {
   }
 
   function parseMultiLineField(fieldName, line, resultKey, r) {
-    r = r || result.parsedSequence;
+    r = r || result;
     let fieldValue = removeFieldName(fieldName, line);
     r[resultKey] = r[resultKey] ? `${r[resultKey]} ` : '';
     r[resultKey] += fieldValue;
@@ -440,21 +429,11 @@ function genbankToJson(string) {
     } else if (feat.notes.locus_tag) {
       feat.name = feat.notes.locus_tag[0];
     } else if (feat.notes.note) {
-      // if the name is coming from a note, shorten the name to 100 chars long
-      feat.name = feat.notes.note[0].substr(0, 100);
+      feat.name = feat.notes.note[0];
     } else {
-      feat.name = '';
-    }
-    // shorten the name to a reasonable length if necessary and warn the user about it
-    var oldName = feat.name;
-    if (feat.name !== 0 && !feat.name) {
       feat.name = 'Untitled Feature';
     }
     feat.name = typeof feat.name === 'string' ? feat.name : String(feat.name);
-    feat.name = feat.name.substr(0, 100);
-    if (feat.name !== oldName) {
-      addMessage('Warning: Shortening name of sequence (max 100 chars)');
-    }
     return feat;
   }
 }

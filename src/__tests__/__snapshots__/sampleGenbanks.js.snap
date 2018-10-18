@@ -3,221 +3,217 @@
 exports[`genbank parsing snapshots MPI genbank example 1`] = `
 Array [
   Object {
-    "messages": Array [],
-    "parsedSequence": Object {
-      "accession": "",
-      "circular": true,
-      "date": "2017-01-18T12:00:00.000Z",
-      "definition": "Entry vector for transferring a cloned attL-flanked gene to a destination vector in the Gateway(R) system.",
-      "features": Array [
-        Object {
-          "end": 2546,
-          "locations": Array [],
-          "name": "synthetic DNA construct",
-          "notes": Object {
-            "lab_host": Array [
-              "Escherichia coli",
-            ],
-            "mol_type": Array [
-              "other DNA",
-            ],
-            "organism": Array [
-              "synthetic DNA construct",
-            ],
-          },
-          "start": 1,
-          "strand": 1,
-          "type": "source",
+    "accession": "",
+    "circular": true,
+    "date": "2017-01-18T12:00:00.000Z",
+    "definition": "Entry vector for transferring a cloned attL-flanked gene to a destination vector in the Gateway(R) system.",
+    "features": Array [
+      Object {
+        "end": 2546,
+        "locations": Array [],
+        "name": "synthetic DNA construct",
+        "notes": Object {
+          "lab_host": Array [
+            "Escherichia coli",
+          ],
+          "mol_type": Array [
+            "other DNA",
+          ],
+          "organism": Array [
+            "synthetic DNA construct",
+          ],
         },
-        Object {
-          "end": 295,
-          "locations": Array [],
-          "name": "rrnB T2 terminator",
-          "notes": Object {
-            "note": Array [
-              "rrnB T2 terminator",
-              "transcription terminator T2 from the E. coli rrnBgene",
-            ],
-          },
-          "start": 268,
-          "strand": 1,
-          "type": "terminator",
+        "start": 1,
+        "strand": 1,
+        "type": "source",
+      },
+      Object {
+        "end": 295,
+        "locations": Array [],
+        "name": "rrnB T2 terminator",
+        "notes": Object {
+          "note": Array [
+            "rrnB T2 terminator",
+            "transcription terminator T2 from the E. coli rrnBgene",
+          ],
         },
-        Object {
-          "end": 473,
-          "locations": Array [],
-          "name": "Escherichia coli rrnB",
-          "notes": Object {
-            "gene": Array [
-              "Escherichia coli rrnB",
-            ],
-            "note": Array [
-              "rrnB T1 terminator",
-              "transcription terminator T1 from the E. coli rrnBgene",
-            ],
-          },
-          "start": 387,
-          "strand": 1,
-          "type": "terminator",
+        "start": 268,
+        "strand": 1,
+        "type": "terminator",
+      },
+      Object {
+        "end": 473,
+        "locations": Array [],
+        "name": "Escherichia coli rrnB",
+        "notes": Object {
+          "gene": Array [
+            "Escherichia coli rrnB",
+          ],
+          "note": Array [
+            "rrnB T1 terminator",
+            "transcription terminator T1 from the E. coli rrnBgene",
+          ],
         },
-        Object {
-          "end": 553,
-          "locations": Array [],
-          "name": "M13 fwd",
-          "notes": Object {
-            "note": Array [
-              "M13 fwd",
-              "common sequencing primer, one of multiple similarvariants",
-            ],
-          },
-          "start": 537,
-          "strand": 1,
-          "type": "primer_bind",
+        "start": 387,
+        "strand": 1,
+        "type": "terminator",
+      },
+      Object {
+        "end": 553,
+        "locations": Array [],
+        "name": "M13 fwd",
+        "notes": Object {
+          "note": Array [
+            "M13 fwd",
+            "common sequencing primer, one of multiple similarvariants",
+          ],
         },
-        Object {
-          "end": 667,
-          "locations": Array [],
-          "name": "mutant version of attL",
-          "notes": Object {
-            "bound_moiety": Array [
-              "LR Clonase(TM)",
-            ],
-            "gene": Array [
-              "mutant version of attL",
-            ],
-            "note": Array [
-              "attL1",
-              "recombination site for the Gateway(R) LR reaction",
-            ],
-          },
-          "start": 569,
-          "strand": 1,
-          "type": "protein_bind",
+        "start": 537,
+        "strand": 1,
+        "type": "primer_bind",
+      },
+      Object {
+        "end": 667,
+        "locations": Array [],
+        "name": "mutant version of attL",
+        "notes": Object {
+          "bound_moiety": Array [
+            "LR Clonase(TM)",
+          ],
+          "gene": Array [
+            "mutant version of attL",
+          ],
+          "note": Array [
+            "attL1",
+            "recombination site for the Gateway(R) LR reaction",
+          ],
         },
-        Object {
-          "end": 670,
-          "locations": Array [],
-          "name": "ORF insertion site",
-          "notes": Object {
-            "note": Array [
-              "ORF insertion site",
-            ],
-          },
-          "start": 668,
-          "strand": 1,
-          "type": "misc_feature",
+        "start": 569,
+        "strand": 1,
+        "type": "protein_bind",
+      },
+      Object {
+        "end": 670,
+        "locations": Array [],
+        "name": "ORF insertion site",
+        "notes": Object {
+          "note": Array [
+            "ORF insertion site",
+          ],
         },
-        Object {
-          "end": 770,
-          "locations": Array [],
-          "name": "mutant version of attL",
-          "notes": Object {
-            "bound_moiety": Array [
-              "LR Clonase(TM)",
-            ],
-            "gene": Array [
-              "mutant version of attL",
-            ],
-            "note": Array [
-              "attL2",
-              "recombination site for the Gateway(R) LR reaction",
-            ],
-          },
-          "start": 671,
-          "strand": 1,
-          "type": "protein_bind",
+        "start": 668,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 770,
+        "locations": Array [],
+        "name": "mutant version of attL",
+        "notes": Object {
+          "bound_moiety": Array [
+            "LR Clonase(TM)",
+          ],
+          "gene": Array [
+            "mutant version of attL",
+          ],
+          "note": Array [
+            "attL2",
+            "recombination site for the Gateway(R) LR reaction",
+          ],
         },
-        Object {
-          "end": 806,
-          "locations": Array [],
-          "name": "T7 promoter",
-          "notes": Object {
-            "note": Array [
-              "T7 promoter",
-              "promoter for bacteriophage T7 RNA polymerase",
-            ],
-          },
-          "start": 788,
-          "strand": -1,
-          "type": "promoter",
+        "start": 671,
+        "strand": 1,
+        "type": "protein_bind",
+      },
+      Object {
+        "end": 806,
+        "locations": Array [],
+        "name": "T7 promoter",
+        "notes": Object {
+          "note": Array [
+            "T7 promoter",
+            "promoter for bacteriophage T7 RNA polymerase",
+          ],
         },
-        Object {
-          "end": 827,
-          "locations": Array [],
-          "name": "M13 rev",
-          "notes": Object {
-            "note": Array [
-              "M13 rev",
-              "common sequencing primer, one of multiple similarvariants",
-            ],
-          },
-          "start": 811,
-          "strand": -1,
-          "type": "primer_bind",
+        "start": 788,
+        "strand": -1,
+        "type": "promoter",
+      },
+      Object {
+        "end": 827,
+        "locations": Array [],
+        "name": "M13 rev",
+        "notes": Object {
+          "note": Array [
+            "M13 rev",
+            "common sequencing primer, one of multiple similarvariants",
+          ],
         },
-        Object {
-          "end": 1749,
-          "locations": Array [],
-          "name": "aph(3')-Ia",
-          "notes": Object {
-            "codon_start": Array [
-              1,
-            ],
-            "gene": Array [
-              "aph(3')-Ia",
-            ],
-            "note": Array [
-              "KanR",
-              "confers resistance to kanamycin in bacteria or G418(Geneticin(R)) in eukaryotes",
-            ],
-            "product": Array [
-              "aminoglycoside phosphotransferase",
-            ],
-            "translation": Array [
-              "MSHIQRETSRPRLNSNMDADLYGYKWARDNVGQSGATIYRLYGKPDAPELFLKHGKGSVANDVTDEMVRLNWLTEFMPLPTIKHFIRTPDDAWLLTTAIPGKTAFQVLEEYPDSGENIVDALAVFLRRLHSIPVCNCPFNSDRVFRLAQAQSRMNNGLVDASDFDDERNGWPVEQVWKEMHKLLPFSPDSVVTHGDFSLDNLIFDEGKLIGCIDVGRVGIADRYQDLAILWNCLGEFSPSLQKRLFQKYGIDNPDMNKLQFHLMLDEFF",
-            ],
-          },
-          "start": 940,
-          "strand": 1,
-          "type": "CDS",
+        "start": 811,
+        "strand": -1,
+        "type": "primer_bind",
+      },
+      Object {
+        "end": 1749,
+        "locations": Array [],
+        "name": "aph(3')-Ia",
+        "notes": Object {
+          "codon_start": Array [
+            1,
+          ],
+          "gene": Array [
+            "aph(3')-Ia",
+          ],
+          "note": Array [
+            "KanR",
+            "confers resistance to kanamycin in bacteria or G418(Geneticin(R)) in eukaryotes",
+          ],
+          "product": Array [
+            "aminoglycoside phosphotransferase",
+          ],
+          "translation": Array [
+            "MSHIQRETSRPRLNSNMDADLYGYKWARDNVGQSGATIYRLYGKPDAPELFLKHGKGSVANDVTDEMVRLNWLTEFMPLPTIKHFIRTPDDAWLLTTAIPGKTAFQVLEEYPDSGENIVDALAVFLRRLHSIPVCNCPFNSDRVFRLAQAQSRMNNGLVDASDFDDERNGWPVEQVWKEMHKLLPFSPDSVVTHGDFSLDNLIFDEGKLIGCIDVGRVGIADRYQDLAILWNCLGEFSPSLQKRLFQKYGIDNPDMNKLQFHLMLDEFF",
+          ],
         },
-        Object {
-          "end": 2484,
-          "locations": Array [],
-          "name": "ori",
-          "notes": Object {
-            "direction": Array [
-              "RIGHT",
-            ],
-            "note": Array [
-              "ori",
-              "high-copy-number ColE1/pMB1/pBR322/pUC origin ofreplication",
-            ],
-          },
-          "start": 1896,
-          "strand": 1,
-          "type": "rep_origin",
+        "start": 940,
+        "strand": 1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 2484,
+        "locations": Array [],
+        "name": "ori",
+        "notes": Object {
+          "direction": Array [
+            "RIGHT",
+          ],
+          "note": Array [
+            "ori",
+            "high-copy-number ColE1/pMB1/pBR322/pUC origin ofreplication",
+          ],
         },
-      ],
-      "genbankDivision": "SYN",
-      "keywords": "pENTR221.",
-      "moleculeType": "ds-DNA",
-      "name": "pENTR221",
-      "organism": ".",
-      "references": Array [
-        Object {
-          "authors": "Invitrogen, (Life, Technologies)",
-          "description": "1  (bases 1 to 2546)",
-          "journal": "Exported Thursday, Feb 11, 2016 from SnapGene 3.0.3 http://www.snapgene.com",
-          "title": "Direct Submission",
-        },
-      ],
-      "sequence": "ctttcctgcgttatcccctgattctgtggataaccgtattaccgcctttgagtgagctgataccgctcgccgcagccgaacgaccgagcgcagcgagtcagtgagcgaggaagcggaagagcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatacgcgtaccgctagccaggaagagtttgtagaaacgcaaaaaggccatccgtcaggatggccttctgcttagtttgatgcctggcagtttatggcgggcgtcctgcccgccaccctccgggccgttgcttcacaacgttcaaatccgctcccggcggatttgtcctactcaggagagcgttcaccgacaaacaacagataaaacgaaaggcccagtcttccgactgagcctttcgttttatttgatgcctggcagttccctactctcgcgttaacgctagcatggatgttttcccagtcacgacgttgtaaaacgacggccagtcttaagctcgggccccaaataatgattttattttgactgatagtgacctgttcgttgcaacaaattgatgagcaatgcttttttataatgccaactttgtacaaaaaagcaggcaccacccagctttcttgtacaaagttggcattataagaaagcattgcttatcaatttgttgcaacgaacaggtcactatcagtcaaaataaaatcattatttgccatccagctgatatcccctatagtgagtcgtattacatggtcatagctgtttcctggcagctctggcccgtgtctcaaaatctctgatgttacattgcacaagataaaaatatatcatcatgaacaataaaactgtctgcttacataaacagtaatacaaggggtgttatgagccatattcaacgggaaacgtcgaggccgcgattaaattccaacatggatgctgatttatatgggtataaatgggctcgcgataatgtcgggcaatcaggtgcgacaatctatcgcttgtatgggaagcccgatgcgccagagttgtttctgaaacatggcaaaggtagcgttgccaatgatgttacagatgagatggtcagactaaactggctgacggaatttatgcctcttccgaccatcaagcattttatccgtactcctgatgatgcatggttactcaccactgcgatccccggaaaaacagcattccaggtattagaagaatatcctgattcaggtgaaaatattgttgatgcgctggcagtgttcctgcgccggttgcattcgattcctgtttgtaattgtccttttaacagcgatcgcgtatttcgtctcgctcaggcgcaatcacgaatgaataacggtttggttgatgcgagtgattttgatgacgagcgtaatggctggcctgttgaacaagtctggaaagaaatgcataaacttttgccattctcaccggattcagtcgtcactcatggtgatttctcacttgataaccttatttttgacgaggggaaattaataggttgtattgatgttggacgagtcggaatcgcagaccgataccaggatcttgccatcctatggaactgcctcggtgagttttctccttcattacagaaacggctttttcaaaaatatggtattgataatcctgatatgaataaattgcagtttcatttgatgctcgatgagtttttctaatcagaattggttaattggttgtaacactggcagagcattacgctgacttgacgggacggcgcaagctcatgaccaaaatcccttaacgtgagttacgcgtcgttccactgagcgtcagaccccgtagaaaagatcaaaggatcttcttgagatcctttttttctgcgcgtaatctgctgcttgcaaacaaaaaaaccaccgctaccagcggtggtttgtttgccggatcaagagctaccaactctttttccgaaggtaactggcttcagcagagcgcagataccaaatactgtccttctagtgtagccgtagttaggccaccacttcaagaactctgtagcaccgcctacatacctcgctctgctaatcctgttaccagtggctgctgccagtggcgataagtcgtgtcttaccgggttggactcaagacgatagttaccggataaggcgcagcggtcgggctgaacggggggttcgtgcacacagcccagcttggagcgaacgacctacaccgaactgagatacctacagcgtgagcattgagaaagcgccacgcttcccgaagggagaaaggcggacaggtatccggtaagcggcagggtcggaacaggagagcgcacgagggagcttccagggggaaacgcctggtatctttatagtcctgtcgggtttcgccacctctgacttgagcgtcgatttttgtgatgctcgtcaggggggcggagcctatggaaaaacgccagcaacgcggcctttttacggttcctggccttttgctggccttttgctcacatgtt",
-      "size": 2546,
-      "source": "null",
-      "version": ".",
-    },
-    "success": true,
+        "start": 1896,
+        "strand": 1,
+        "type": "rep_origin",
+      },
+    ],
+    "genbankDivision": "SYN",
+    "keywords": "pENTR221.",
+    "moleculeType": "ds-DNA",
+    "name": "pENTR221",
+    "organism": ".",
+    "references": Array [
+      Object {
+        "authors": "Invitrogen, (Life, Technologies)",
+        "description": "1  (bases 1 to 2546)",
+        "journal": "Exported Thursday, Feb 11, 2016 from SnapGene 3.0.3 http://www.snapgene.com",
+        "title": "Direct Submission",
+      },
+    ],
+    "sequence": "ctttcctgcgttatcccctgattctgtggataaccgtattaccgcctttgagtgagctgataccgctcgccgcagccgaacgaccgagcgcagcgagtcagtgagcgaggaagcggaagagcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatacgcgtaccgctagccaggaagagtttgtagaaacgcaaaaaggccatccgtcaggatggccttctgcttagtttgatgcctggcagtttatggcgggcgtcctgcccgccaccctccgggccgttgcttcacaacgttcaaatccgctcccggcggatttgtcctactcaggagagcgttcaccgacaaacaacagataaaacgaaaggcccagtcttccgactgagcctttcgttttatttgatgcctggcagttccctactctcgcgttaacgctagcatggatgttttcccagtcacgacgttgtaaaacgacggccagtcttaagctcgggccccaaataatgattttattttgactgatagtgacctgttcgttgcaacaaattgatgagcaatgcttttttataatgccaactttgtacaaaaaagcaggcaccacccagctttcttgtacaaagttggcattataagaaagcattgcttatcaatttgttgcaacgaacaggtcactatcagtcaaaataaaatcattatttgccatccagctgatatcccctatagtgagtcgtattacatggtcatagctgtttcctggcagctctggcccgtgtctcaaaatctctgatgttacattgcacaagataaaaatatatcatcatgaacaataaaactgtctgcttacataaacagtaatacaaggggtgttatgagccatattcaacgggaaacgtcgaggccgcgattaaattccaacatggatgctgatttatatgggtataaatgggctcgcgataatgtcgggcaatcaggtgcgacaatctatcgcttgtatgggaagcccgatgcgccagagttgtttctgaaacatggcaaaggtagcgttgccaatgatgttacagatgagatggtcagactaaactggctgacggaatttatgcctcttccgaccatcaagcattttatccgtactcctgatgatgcatggttactcaccactgcgatccccggaaaaacagcattccaggtattagaagaatatcctgattcaggtgaaaatattgttgatgcgctggcagtgttcctgcgccggttgcattcgattcctgtttgtaattgtccttttaacagcgatcgcgtatttcgtctcgctcaggcgcaatcacgaatgaataacggtttggttgatgcgagtgattttgatgacgagcgtaatggctggcctgttgaacaagtctggaaagaaatgcataaacttttgccattctcaccggattcagtcgtcactcatggtgatttctcacttgataaccttatttttgacgaggggaaattaataggttgtattgatgttggacgagtcggaatcgcagaccgataccaggatcttgccatcctatggaactgcctcggtgagttttctccttcattacagaaacggctttttcaaaaatatggtattgataatcctgatatgaataaattgcagtttcatttgatgctcgatgagtttttctaatcagaattggttaattggttgtaacactggcagagcattacgctgacttgacgggacggcgcaagctcatgaccaaaatcccttaacgtgagttacgcgtcgttccactgagcgtcagaccccgtagaaaagatcaaaggatcttcttgagatcctttttttctgcgcgtaatctgctgcttgcaaacaaaaaaaccaccgctaccagcggtggtttgtttgccggatcaagagctaccaactctttttccgaaggtaactggcttcagcagagcgcagataccaaatactgtccttctagtgtagccgtagttaggccaccacttcaagaactctgtagcaccgcctacatacctcgctctgctaatcctgttaccagtggctgctgccagtggcgataagtcgtgtcttaccgggttggactcaagacgatagttaccggataaggcgcagcggtcgggctgaacggggggttcgtgcacacagcccagcttggagcgaacgacctacaccgaactgagatacctacagcgtgagcattgagaaagcgccacgcttcccgaagggagaaaggcggacaggtatccggtaagcggcagggtcggaacaggagagcgcacgagggagcttccagggggaaacgcctggtatctttatagtcctgtcgggtttcgccacctctgacttgagcgtcgatttttgtgatgctcgtcaggggggcggagcctatggaaaaacgccagcaacgcggcctttttacggttcctggccttttgctggccttttgctcacatgtt",
+    "size": 2546,
+    "source": "null",
+    "version": ".",
   },
 ]
 `;
@@ -225,113 +221,109 @@ Array [
 exports[`genbank parsing snapshots ncbi genbank example 1`] = `
 Array [
   Object {
-    "messages": Array [],
-    "parsedSequence": Object {
-      "accession": "Z78533",
-      "circular": false,
-      "date": "2006-11-30T12:00:00.000Z",
-      "definition": "C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.",
-      "features": Array [
-        Object {
-          "end": 740,
-          "locations": Array [],
-          "name": "Cypripedium irapeanum",
-          "notes": Object {
-            "db_xref": Array [
-              "taxon:49711",
-            ],
-            "mol_type": Array [
-              "genomic DNA",
-            ],
-            "organism": Array [
-              "Cypripedium irapeanum",
-            ],
-          },
-          "start": 1,
-          "strand": 1,
-          "type": "source",
+    "accession": "Z78533",
+    "circular": false,
+    "date": "2006-11-30T12:00:00.000Z",
+    "definition": "C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.",
+    "features": Array [
+      Object {
+        "end": 740,
+        "locations": Array [],
+        "name": "Cypripedium irapeanum",
+        "notes": Object {
+          "db_xref": Array [
+            "taxon:49711",
+          ],
+          "mol_type": Array [
+            "genomic DNA",
+          ],
+          "organism": Array [
+            "Cypripedium irapeanum",
+          ],
         },
-        Object {
-          "end": 380,
-          "locations": Array [],
-          "name": "internal transcribed spacer 1",
-          "notes": Object {
-            "note": Array [
-              "internal transcribed spacer 1",
-            ],
-          },
-          "start": 1,
-          "strand": 1,
-          "type": "misc_feature",
+        "start": 1,
+        "strand": 1,
+        "type": "source",
+      },
+      Object {
+        "end": 380,
+        "locations": Array [],
+        "name": "internal transcribed spacer 1",
+        "notes": Object {
+          "note": Array [
+            "internal transcribed spacer 1",
+          ],
         },
-        Object {
-          "end": 550,
-          "locations": Array [],
-          "name": "5.8S rRNA",
-          "notes": Object {
-            "gene": Array [
-              "5.8S rRNA",
-            ],
-          },
-          "start": 381,
-          "strand": 1,
-          "type": "gene",
+        "start": 1,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 550,
+        "locations": Array [],
+        "name": "5.8S rRNA",
+        "notes": Object {
+          "gene": Array [
+            "5.8S rRNA",
+          ],
         },
-        Object {
-          "end": 550,
-          "locations": Array [],
-          "name": "5.8S rRNA",
-          "notes": Object {
-            "gene": Array [
-              "5.8S rRNA",
-            ],
-            "product": Array [
-              "5.8S ribosomal RNA",
-            ],
-          },
-          "start": 381,
-          "strand": 1,
-          "type": "rRNA",
+        "start": 381,
+        "strand": 1,
+        "type": "gene",
+      },
+      Object {
+        "end": 550,
+        "locations": Array [],
+        "name": "5.8S rRNA",
+        "notes": Object {
+          "gene": Array [
+            "5.8S rRNA",
+          ],
+          "product": Array [
+            "5.8S ribosomal RNA",
+          ],
         },
-        Object {
-          "end": 740,
-          "locations": Array [],
-          "name": "internal transcribed spacer 2",
-          "notes": Object {
-            "note": Array [
-              "internal transcribed spacer 2",
-            ],
-          },
-          "start": 551,
-          "strand": 1,
-          "type": "misc_feature",
+        "start": 381,
+        "strand": 1,
+        "type": "rRNA",
+      },
+      Object {
+        "end": 740,
+        "locations": Array [],
+        "name": "internal transcribed spacer 2",
+        "notes": Object {
+          "note": Array [
+            "internal transcribed spacer 2",
+          ],
         },
-      ],
-      "genbankDivision": "PLN",
-      "keywords": "5.8S ribosomal RNA; 5.8S rRNA gene; internal transcribed spacer; ITS1; ITS2.",
-      "moleculeType": "DNA",
-      "name": "Z78533",
-      "organism": "Cypripedium irapeanum Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta; Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae; Cypripedioideae; Cypripedium.",
-      "references": Array [
-        Object {
-          "authors": "Cox,A.V., Pridgeon,A.M., Albert,V.A. and Chase,M.W.",
-          "description": "1",
-          "journal": "Unpublished",
-          "title": "Phylogenetics of the slipper orchids (Cypripedioideae: Orchidaceae): nuclear rDNA ITS sequences",
-        },
-        Object {
-          "authors": "Cox,A.V.",
-          "description": "2  (bases 1 to 740)",
-          "journal": "Submitted (19-AUG-1996) Cox A.V., Royal Botanic Gardens, Kew, Richmond, Surrey TW9 3AB, UK",
-          "title": "Direct Submission",
-        },
-      ],
-      "sequence": "cgtaacaaggtttccgtaggtgaacctgcggaaggatcattgatgagaccgtggaataaacgatcgagtgaatccggaggaccggtgtactcagctcaccgggggcattgctcccgtggtgaccctgatttgttgttgggccgcctcgggagcgtccatggcgggtttgaacctctagcccggcgcagtttgggcgccaagccatatgaaagcatcaccggcgaatggcattgtcttccccaaaacccggagcggcggcgtgctgtcgcgtgcccaatgaattttgatgactctcgcaaacgggaatcttggctctttgcatcggatggaaggacgcagcgaaatgcgataagtggtgtgaattgcaagatcccgtgaaccatcgagtcttttgaacgcaagttgcgcccgaggccatcaggctaagggcacgcctgcttgggcgtcgcgcttcgtctctctcctgccaatgcttgcccggcatacagccaggccggcgtggtgcggatgtgaaagattggccccttgtgcctaggtgcggcgggtccaagagctggtgttttgatggcccggaacccggcaagaggtggacggatgctggcagcagctgccgtgcgaatcccccatgttgtcgtgcttgtcggacaggcaggagaacccttccgaaccccaatggagggcggttgaccgccattcggatgtgaccccaggtcaggcgggggcacccgctgagtttacgc",
-      "size": 740,
-      "source": "Cypripedium irapeanum",
-      "version": "Z78533.1  GI:2765658",
-    },
-    "success": true,
+        "start": 551,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+    ],
+    "genbankDivision": "PLN",
+    "keywords": "5.8S ribosomal RNA; 5.8S rRNA gene; internal transcribed spacer; ITS1; ITS2.",
+    "moleculeType": "DNA",
+    "name": "Z78533",
+    "organism": "Cypripedium irapeanum Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta; Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae; Cypripedioideae; Cypripedium.",
+    "references": Array [
+      Object {
+        "authors": "Cox,A.V., Pridgeon,A.M., Albert,V.A. and Chase,M.W.",
+        "description": "1",
+        "journal": "Unpublished",
+        "title": "Phylogenetics of the slipper orchids (Cypripedioideae: Orchidaceae): nuclear rDNA ITS sequences",
+      },
+      Object {
+        "authors": "Cox,A.V.",
+        "description": "2  (bases 1 to 740)",
+        "journal": "Submitted (19-AUG-1996) Cox A.V., Royal Botanic Gardens, Kew, Richmond, Surrey TW9 3AB, UK",
+        "title": "Direct Submission",
+      },
+    ],
+    "sequence": "cgtaacaaggtttccgtaggtgaacctgcggaaggatcattgatgagaccgtggaataaacgatcgagtgaatccggaggaccggtgtactcagctcaccgggggcattgctcccgtggtgaccctgatttgttgttgggccgcctcgggagcgtccatggcgggtttgaacctctagcccggcgcagtttgggcgccaagccatatgaaagcatcaccggcgaatggcattgtcttccccaaaacccggagcggcggcgtgctgtcgcgtgcccaatgaattttgatgactctcgcaaacgggaatcttggctctttgcatcggatggaaggacgcagcgaaatgcgataagtggtgtgaattgcaagatcccgtgaaccatcgagtcttttgaacgcaagttgcgcccgaggccatcaggctaagggcacgcctgcttgggcgtcgcgcttcgtctctctcctgccaatgcttgcccggcatacagccaggccggcgtggtgcggatgtgaaagattggccccttgtgcctaggtgcggcgggtccaagagctggtgttttgatggcccggaacccggcaagaggtggacggatgctggcagcagctgccgtgcgaatcccccatgttgtcgtgcttgtcggacaggcaggagaacccttccgaaccccaatggagggcggttgaccgccattcggatgtgaccccaggtcaggcgggggcacccgctgagtttacgc",
+    "size": 740,
+    "source": "Cypripedium irapeanum",
+    "version": "Z78533.1  GI:2765658",
   },
 ]
 `;

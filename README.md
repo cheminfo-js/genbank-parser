@@ -95,93 +95,89 @@ Parsed output
 ```js
 [
   {
-    messages: [],
-    success: true,
-    parsedSequence: {
-      features: [
-        {
-          locations: [],
-          notes: {
-            organism: ['Cypripedium irapeanum'],
-            mol_type: ['genomic DNA'],
-            db_xref: ['taxon:49711']
-          },
-          type: 'source',
-          strand: 1,
-          start: 1,
-          end: 740,
-          name: 'Cypripedium irapeanum'
+    features: [
+      {
+        locations: [],
+        notes: {
+          organism: ['Cypripedium irapeanum'],
+          mol_type: ['genomic DNA'],
+          db_xref: ['taxon:49711']
         },
-        {
-          locations: [],
-          notes: { note: ['internal transcribed spacer 1'] },
-          type: 'misc_feature',
-          strand: 1,
-          start: 1,
-          end: 380,
-          name: 'internal transcribed spacer 1'
-        },
-        {
-          locations: [],
-          notes: { gene: ['5.8S rRNA'] },
-          type: 'gene',
-          strand: 1,
-          start: 381,
-          end: 550,
-          name: '5.8S rRNA'
-        },
-        {
-          locations: [],
-          notes: { gene: ['5.8S rRNA'], product: ['5.8S ribosomal RNA'] },
-          type: 'rRNA',
-          strand: 1,
-          start: 381,
-          end: 550,
-          name: '5.8S rRNA'
-        },
-        {
-          locations: [],
-          notes: { note: ['internal transcribed spacer 2'] },
-          type: 'misc_feature',
-          strand: 1,
-          start: 551,
-          end: 740,
-          name: 'internal transcribed spacer 2'
-        }
-      ],
-      name: 'Z78533',
-      sequence:
-        'cgtaacaaggtttccgtaggtgaacctgcggaaggatcattgatgagaccgtggaataaacgatcgagtgaatccggaggaccggtgtactcagctcaccgggggcattgctcccgtggtgaccctgatttgttgttgggccgcctcgggagcgtccatggcgggtttgaacctctagcccggcgcagtttgggcgccaagccatatgaaagcatcaccggcgaatggcattgtcttccccaaaacccggagcggcggcgtgctgtcgcgtgcccaatgaattttgatgactctcgcaaacgggaatcttggctctttgcatcggatggaaggacgcagcgaaatgcgataagtggtgtgaattgcaagatcccgtgaaccatcgagtcttttgaacgcaagttgcgcccgaggccatcaggctaagggcacgcctgcttgggcgtcgcgcttcgtctctctcctgccaatgcttgcccggcatacagccaggccggcgtggtgcggatgtgaaagattggccccttgtgcctaggtgcggcgggtccaagagctggtgttttgatggcccggaacccggcaagaggtggacggatgctggcagcagctgccgtgcgaatcccccatgttgtcgtgcttgtcggacaggcaggagaacccttccgaaccccaatggagggcggttgaccgccattcggatgtgaccccaggtcaggcgggggcacccgctgagtttacgc',
-      circular: false,
-      moleculeType: 'DNA',
-      genbankDivision: 'PLN',
-      date: '2006-11-30T12:00:00.000Z',
-      size: 740,
-      definition: 'C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.',
-      accession: 'Z78533',
-      version: 'Z78533.1  GI:2765658',
-      keywords:
-        '5.8S ribosomal RNA; 5.8S rRNA gene; internal transcribed spacer; ITS1; ITS2.',
-      source: 'Cypripedium irapeanum',
-      organism:
-        'Cypripedium irapeanum Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta; Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae; Cypripedioideae; Cypripedium.',
-      references: [
-        {
-          description: '1',
-          authors: 'Cox,A.V., Pridgeon,A.M., Albert,V.A. and Chase,M.W.',
-          title:
-            'Phylogenetics of the slipper orchids (Cypripedioideae: Orchidaceae): nuclear rDNA ITS sequences',
-          journal: 'Unpublished'
-        },
-        {
-          description: '2  (bases 1 to 740)',
-          authors: 'Cox,A.V.',
-          title: 'Direct Submission',
-          journal:
-            'Submitted (19-AUG-1996) Cox A.V., Royal Botanic Gardens, Kew, Richmond, Surrey TW9 3AB, UK'
-        }
-      ]
-    }
+        type: 'source',
+        strand: 1,
+        start: 1,
+        end: 740,
+        name: 'Cypripedium irapeanum'
+      },
+      {
+        locations: [],
+        notes: { note: ['internal transcribed spacer 1'] },
+        type: 'misc_feature',
+        strand: 1,
+        start: 1,
+        end: 380,
+        name: 'internal transcribed spacer 1'
+      },
+      {
+        locations: [],
+        notes: { gene: ['5.8S rRNA'] },
+        type: 'gene',
+        strand: 1,
+        start: 381,
+        end: 550,
+        name: '5.8S rRNA'
+      },
+      {
+        locations: [],
+        notes: { gene: ['5.8S rRNA'], product: ['5.8S ribosomal RNA'] },
+        type: 'rRNA',
+        strand: 1,
+        start: 381,
+        end: 550,
+        name: '5.8S rRNA'
+      },
+      {
+        locations: [],
+        notes: { note: ['internal transcribed spacer 2'] },
+        type: 'misc_feature',
+        strand: 1,
+        start: 551,
+        end: 740,
+        name: 'internal transcribed spacer 2'
+      }
+    ],
+    name: 'Z78533',
+    sequence:
+      'cgtaacaaggtttccgtaggtgaacctgcggaaggatcattgatgagaccgtggaataaacgatcgagtgaatccggaggaccggtgtactcagctcaccgggggcattgctcccgtggtgaccctgatttgttgttgggccgcctcgggagcgtccatggcgggtttgaacctctagcccggcgcagtttgggcgccaagccatatgaaagcatcaccggcgaatggcattgtcttccccaaaacccggagcggcggcgtgctgtcgcgtgcccaatgaattttgatgactctcgcaaacgggaatcttggctctttgcatcggatggaaggacgcagcgaaatgcgataagtggtgtgaattgcaagatcccgtgaaccatcgagtcttttgaacgcaagttgcgcccgaggccatcaggctaagggcacgcctgcttgggcgtcgcgcttcgtctctctcctgccaatgcttgcccggcatacagccaggccggcgtggtgcggatgtgaaagattggccccttgtgcctaggtgcggcgggtccaagagctggtgttttgatggcccggaacccggcaagaggtggacggatgctggcagcagctgccgtgcgaatcccccatgttgtcgtgcttgtcggacaggcaggagaacccttccgaaccccaatggagggcggttgaccgccattcggatgtgaccccaggtcaggcgggggcacccgctgagtttacgc',
+    circular: false,
+    moleculeType: 'DNA',
+    genbankDivision: 'PLN',
+    date: '2006-11-30T12:00:00.000Z',
+    size: 740,
+    definition: 'C.irapeanum 5.8S rRNA gene and ITS1 and ITS2 DNA.',
+    accession: 'Z78533',
+    version: 'Z78533.1  GI:2765658',
+    keywords:
+      '5.8S ribosomal RNA; 5.8S rRNA gene; internal transcribed spacer; ITS1; ITS2.',
+    source: 'Cypripedium irapeanum',
+    organism:
+      'Cypripedium irapeanum Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta; Spermatophyta; Magnoliophyta; Liliopsida; Asparagales; Orchidaceae; Cypripedioideae; Cypripedium.',
+    references: [
+      {
+        description: '1',
+        authors: 'Cox,A.V., Pridgeon,A.M., Albert,V.A. and Chase,M.W.',
+        title:
+          'Phylogenetics of the slipper orchids (Cypripedioideae: Orchidaceae): nuclear rDNA ITS sequences',
+        journal: 'Unpublished'
+      },
+      {
+        description: '2  (bases 1 to 740)',
+        authors: 'Cox,A.V.',
+        title: 'Direct Submission',
+        journal:
+          'Submitted (19-AUG-1996) Cox A.V., Royal Botanic Gardens, Kew, Richmond, Surrey TW9 3AB, UK'
+      }
+    ]
   }
 ];
 ```
