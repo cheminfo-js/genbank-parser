@@ -1,13 +1,13 @@
+# genbank-parser
+
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-# cheminfo-js
+This work was based on https://github.com/TeselaGen/ve-sequence-parsers.
 
-This work was based on https://github.com/TeselaGen/ve-sequence-parsers
-
-Parse genbank files
+Parse genbank files.
 
 :warning: The format of the parsed genbank is not stable yet and is subject to changes in future versions. :warning:
 
@@ -80,7 +80,7 @@ ORIGIN
 
 Parsed output
 
-```js
+```json
 [
   {
     messages: [],
