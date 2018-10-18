@@ -9,8 +9,6 @@ This work was based on [TeselaGen/ve-sequence-parsers](https://github.com/Tesela
 
 Parse genbank files.
 
-:warning: The format of the parsed genbank is not stable yet and is subject to changes in future versions. :warning:
-
 ## Usage
 
 ```js
