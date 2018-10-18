@@ -11,7 +11,9 @@
 
 * The date property for a parsed sequence was changed from a number to an
 ISO string representation.
-
+* If a sequence fails to be parsed, the function will now throw an error
+instead of generating a warning in the result. It means that now the
+function returns an array of sequence objects.
 
 
 <a name="0.2.0"></a>
