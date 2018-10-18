@@ -5,7 +5,7 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-This work was based on https://github.com/TeselaGen/ve-sequence-parsers.
+This work was based on [TeselaGen/ve-sequence-parsers](https://github.com/TeselaGen/ve-sequence-parsers).
 
 Parse genbank files.
 
