@@ -187,7 +187,7 @@ function genbankToJson(sequence) {
     };
     line = removeFieldName(genbankAnnotationKey.LOCUS_TAG, line);
     const m = line.match(
-      /^([^\s]+)\s+(\d+)\s+bp\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)$/
+      /^([^\s]+)\s+(\d+)\s+bp\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)$/,
     );
     let locusName = m[1];
     let size = +m[2];
@@ -229,7 +229,7 @@ function genbankToJson(sequence) {
         genbankAnnotationKey.REFERENCE_TAG,
         line,
         'description',
-        lastRef
+        lastRef,
       );
     } else {
       parseMultiLineField(subType, line, subType.toLowerCase(), lastRef);
@@ -247,7 +247,7 @@ function genbankToJson(sequence) {
     if (lastLineWasFeaturesTag) {
       // we need to get the indentation of feature locations
       featureLocationIndentation = getLengthOfWhiteSpaceBeforeStartOfLetters(
-        line
+        line,
       );
       // set lastLineWasFeaturesTag to false
       lastLineWasFeaturesTag = false;
@@ -380,9 +380,9 @@ function genbankToJson(sequence) {
     return arr[0];
   }
 
-  function parseMultiLineField(fieldName, line, resultKey, r) {
+  function parseMultiLineField(fName, line, resultKey, r) {
     r = r || result;
-    let fieldValue = removeFieldName(fieldName, line);
+    let fieldValue = removeFieldName(fName, line);
     r[resultKey] = r[resultKey] ? `${r[resultKey]} ` : '';
     r[resultKey] += fieldValue;
   }

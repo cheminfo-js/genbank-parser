@@ -87,5 +87,5 @@ module.exports = [
   'V_region',
   'V_segment',
   'variation',
-  'unsure'
+  'unsure',
 ];

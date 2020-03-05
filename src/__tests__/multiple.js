@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const genbankParser = require('..');
 
-it('parse genbank with multiple records', () => {
+test('parse genbank with multiple records', () => {
   const parsed = genbankParser(readFile('multiple.gb'));
   expect(parsed).toHaveLength(94);
 });
