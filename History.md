@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/cheminfo-js/genbank-parser/compare/v1.0.0...v1.1.0) (2020-03-05)
+
+
+### Bug Fixes
+
+* fix inreachable code ([5b6fce1](https://github.com/cheminfo-js/genbank-parser/commit/5b6fce15c942933f09d9a915ea99b565c7a11fed))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/cheminfo-js/genbank-parser/compare/v0.2.0...v1.0.0) (2018-10-18)
 
