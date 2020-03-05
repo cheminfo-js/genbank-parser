@@ -1,4 +1,5 @@
 /* eslint no-div-regex: 0*/
+/* eslint prefer-named-capture-group: 0 */
 
 'use strict';
 
@@ -9,12 +10,12 @@ function genbankToJson(sequence) {
     throw new TypeError('sequence must be a string');
   }
 
-  var resultsArray = [];
-  var result;
-  var currentFeatureNote;
+  let resultsArray = [];
+  let result;
+  let currentFeatureNote;
 
   // Genbank specification: https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html
-  var genbankAnnotationKey = {
+  let genbankAnnotationKey = {
     // Contains in order: locus name, sequence length, molecule type (e.g. DNA), genbank division (see 1-18 below), modification date
     // locus definition has changed with time, use accession number for a unique identifier
     LOCUS_TAG: 'LOCUS',
@@ -45,7 +46,7 @@ function genbankToJson(sequence) {
     BASE_COUNT_TAG: 'BASE COUNT',
     // CONTIG_TAG: "CONTIG"
     ORIGIN_TAG: 'ORIGIN',
-    END_SEQUENCE_TAG: '//'
+    END_SEQUENCE_TAG: '//',
   };
 
   // Genbank divisions
@@ -68,22 +69,24 @@ function genbankToJson(sequence) {
   // 17. HTC - unfinished high-throughput cDNA sequencing
   // 18. ENV - environmental sampling sequences
 
-  var lines = sequence.split(/\r?\n/);
-  var fieldName;
+  let lines = sequence.split(/\r?\n/);
+  let fieldName;
   let subFieldType;
-  var featureLocationIndentation;
+  let featureLocationIndentation;
+  let lastLineWasFeaturesTag;
+  let lastLineWasLocation;
 
   if (lines === null) {
     throw new Error('sequence file is empty');
   }
-  var hasFoundLocus = false;
+  let hasFoundLocus = false;
 
   for (let line of lines) {
     if (line === null) break;
-    var lineFieldName = getLineFieldName(line);
-    var val = getLineVal(line);
-    var isSubKey = isSubKeyword(line);
-    var isKey = isKeyword(line);
+    let lineFieldName = getLineFieldName(line);
+    let val = getLineVal(line);
+    let isSubKey = isSubKeyword(line);
+    let isKey = isKeyword(line);
 
     if (lineFieldName === genbankAnnotationKey.END_SEQUENCE_TAG || isKey) {
       fieldName = lineFieldName;
@@ -163,7 +166,7 @@ function genbankToJson(sequence) {
 
   function postProcessCurSeq() {
     if (result && result.features) {
-      for (var i = 0; i < result.features.length; i++) {
+      for (let i = 0; i < result.features.length; i++) {
         result.features[i] = postProcessGenbankFeature(result.features[i]);
       }
     }
@@ -171,7 +174,7 @@ function genbankToJson(sequence) {
 
   function parseOrigin(line, key) {
     if (key !== genbankAnnotationKey.ORIGIN_TAG) {
-      var newLine = line.replace(/[\s]*[0-9]*/g, '');
+      let newLine = line.replace(/[\s]*[0-9]*/g, '');
       result.sequence += newLine;
     }
   }
@@ -180,7 +183,7 @@ function genbankToJson(sequence) {
     result = {
       features: [],
       name: 'Untitled sequence',
-      sequence: ''
+      sequence: '',
     };
     line = removeFieldName(genbankAnnotationKey.LOCUS_TAG, line);
     const m = line.match(
@@ -210,10 +213,10 @@ function genbankToJson(sequence) {
     seq.size = size;
   }
 
-  function removeFieldName(fieldName, line) {
+  function removeFieldName(fName, line) {
     line = line.replace(/^\s*/, '');
-    if (line.indexOf(fieldName) === 0) {
-      line = line.replace(fieldName, '');
+    if (line.indexOf(fName) === 0) {
+      line = line.replace(fName, '');
     }
     return line.trim();
   }
@@ -233,10 +236,8 @@ function genbankToJson(sequence) {
     }
   }
 
-  var lastLineWasFeaturesTag;
-  var lastLineWasLocation;
   function parseFeatures(line, key, val) {
-    var strand;
+    let strand;
     // FOR THE MAIN FEATURES LOCATION/QUALIFIER LINE
     if (key === genbankAnnotationKey.FEATURES_TAG) {
       lastLineWasFeaturesTag = true;
@@ -288,7 +289,7 @@ function genbankToJson(sequence) {
         }
 
         newFeature();
-        var feat = getCurrentFeature();
+        let feat = getCurrentFeature();
         feat.type = key;
         feat.strand = strand;
 
@@ -301,12 +302,12 @@ function genbankToJson(sequence) {
   function newFeature() {
     result.features.push({
       locations: [],
-      notes: {}
+      notes: {},
     });
   }
 
   function isNote(line) {
-    var qual = false;
+    let qual = false;
     /* if (line.charAt(21) === "/") {//T.H. Hard coded method
            qual = true;
          }*/
@@ -327,8 +328,8 @@ function genbankToJson(sequence) {
 
   function parseFeatureLocation(locStr) {
     locStr = locStr.trim();
-    var locArr = [];
-    locStr.replace(/(\d+)/g, function (string, match) {
+    let locArr = [];
+    locStr.replace(/(\d+)/g, function(string, match) {
       locArr.push(match);
     });
     let feat = getCurrentFeature();
@@ -337,13 +338,13 @@ function genbankToJson(sequence) {
   }
 
   function parseFeatureNote(line) {
-    var newLine, lineArr;
+    let newLine, lineArr;
 
     newLine = line.trim();
     newLine = newLine.replace(/^\/|"$/g, '');
     lineArr = newLine.split(/="|=/);
 
-    var val = lineArr[1];
+    let val = lineArr[1];
 
     if (val) {
       val = val.replace(/\\/g, ' ');
@@ -354,8 +355,8 @@ function genbankToJson(sequence) {
         val = +val;
       }
     }
-    var key = lineArr[0];
-    var currentNotes = getCurrentFeature().notes;
+    let key = lineArr[0];
+    let currentNotes = getCurrentFeature().notes;
     if (currentNotes[key]) {
       // array already exists, so push value into it
       currentNotes[key].push(val);
@@ -367,7 +368,7 @@ function genbankToJson(sequence) {
   }
 
   function getLineFieldName(line) {
-    var arr;
+    let arr;
     line = line.replace(/^[\s]*/, '');
 
     if (line.indexOf('=') < 0) {
@@ -387,7 +388,7 @@ function genbankToJson(sequence) {
   }
 
   function getLineVal(line) {
-    var arr;
+    let arr;
 
     if (line.indexOf('=') < 0) {
       line = line.replace(/^[\s]*[\S]+[\s]+|[\s]+$/, '');
@@ -400,7 +401,7 @@ function genbankToJson(sequence) {
   }
 
   function isKeyword(line) {
-    var isKey = false;
+    let isKey = false;
     if (line.substr(0, 10).match(/^[\S]+/)) {
       isKey = true;
     }
@@ -408,7 +409,7 @@ function genbankToJson(sequence) {
   }
 
   function isSubKeyword(line) {
-    var isSubKey = false;
+    let isSubKey = false;
     if (line.substr(0, 10).match(/^[\s]+[\S]+/)) {
       isSubKey = true;
     }
@@ -439,7 +440,7 @@ function genbankToJson(sequence) {
 }
 
 function isFeatureLineRunon(line, featureLocationIndentation) {
-  var indentationOfLine = getLengthOfWhiteSpaceBeforeStartOfLetters(line);
+  let indentationOfLine = getLengthOfWhiteSpaceBeforeStartOfLetters(line);
   if (featureLocationIndentation === indentationOfLine) {
     // the feature location indentation calculated right after the feature tag
     // cannot be the same as the indentation of the line
@@ -450,7 +451,7 @@ function isFeatureLineRunon(line, featureLocationIndentation) {
     return false; // the line is NOT a run on
   }
 
-  var trimmed = line.trim();
+  let trimmed = line.trim();
   if (trimmed.charAt(0).match(/\//)) {
     // the first char in the trimmed line cannot be a /
     return false; // the line is NOT a run on
@@ -476,7 +477,7 @@ function isFeatureLineRunon(line, featureLocationIndentation) {
 }
 
 function getLengthOfWhiteSpaceBeforeStartOfLetters(string) {
-  var match = /^\s*/.exec(string);
+  let match = /^\s*/.exec(string);
   if (match !== null) {
     return match[0].length;
   } else {
