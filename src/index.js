@@ -184,6 +184,7 @@ function genbankToJson(sequence) {
       features: [],
       name: 'Untitled sequence',
       sequence: '',
+      references: [],
     };
     line = removeFieldName(genbankAnnotationKey.LOCUS_TAG, line);
     const m = line.match(
