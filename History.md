@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/cheminfo-js/genbank-parser/compare/v1.1.0...v1.1.1) (2020-03-05)
+
+
+### Bug Fixes
+
+* initialize references to an empty array ([87907d5](https://github.com/cheminfo-js/genbank-parser/commit/87907d59c08d59fe29cf7b3e74bde87fb6e20ab5))
+
+
+
 # [1.1.0](https://github.com/cheminfo-js/genbank-parser/compare/v1.0.0...v1.1.0) (2020-03-05)
 
 
