@@ -10,7 +10,6 @@ Array [
     "features": Array [
       Object {
         "end": 2546,
-        "locations": Array [],
         "name": "synthetic DNA construct",
         "notes": Object {
           "lab_host": Array [
@@ -29,7 +28,6 @@ Array [
       },
       Object {
         "end": 295,
-        "locations": Array [],
         "name": "rrnB T2 terminator",
         "notes": Object {
           "note": Array [
@@ -43,7 +41,6 @@ Array [
       },
       Object {
         "end": 473,
-        "locations": Array [],
         "name": "Escherichia coli rrnB",
         "notes": Object {
           "gene": Array [
@@ -60,7 +57,6 @@ Array [
       },
       Object {
         "end": 553,
-        "locations": Array [],
         "name": "M13 fwd",
         "notes": Object {
           "note": Array [
@@ -74,7 +70,6 @@ Array [
       },
       Object {
         "end": 667,
-        "locations": Array [],
         "name": "mutant version of attL",
         "notes": Object {
           "bound_moiety": Array [
@@ -94,7 +89,6 @@ Array [
       },
       Object {
         "end": 670,
-        "locations": Array [],
         "name": "ORF insertion site",
         "notes": Object {
           "note": Array [
@@ -107,7 +101,6 @@ Array [
       },
       Object {
         "end": 770,
-        "locations": Array [],
         "name": "mutant version of attL",
         "notes": Object {
           "bound_moiety": Array [
@@ -127,7 +120,6 @@ Array [
       },
       Object {
         "end": 806,
-        "locations": Array [],
         "name": "T7 promoter",
         "notes": Object {
           "note": Array [
@@ -141,7 +133,6 @@ Array [
       },
       Object {
         "end": 827,
-        "locations": Array [],
         "name": "M13 rev",
         "notes": Object {
           "note": Array [
@@ -155,7 +146,6 @@ Array [
       },
       Object {
         "end": 1749,
-        "locations": Array [],
         "name": "aph(3')-Ia",
         "notes": Object {
           "codon_start": Array [
@@ -181,7 +171,6 @@ Array [
       },
       Object {
         "end": 2484,
-        "locations": Array [],
         "name": "ori",
         "notes": Object {
           "direction": Array [
@@ -228,7 +217,6 @@ Array [
     "features": Array [
       Object {
         "end": 740,
-        "locations": Array [],
         "name": "Cypripedium irapeanum",
         "notes": Object {
           "db_xref": Array [
@@ -247,7 +235,6 @@ Array [
       },
       Object {
         "end": 380,
-        "locations": Array [],
         "name": "internal transcribed spacer 1",
         "notes": Object {
           "note": Array [
@@ -260,7 +247,6 @@ Array [
       },
       Object {
         "end": 550,
-        "locations": Array [],
         "name": "5.8S rRNA",
         "notes": Object {
           "gene": Array [
@@ -273,7 +259,6 @@ Array [
       },
       Object {
         "end": 550,
-        "locations": Array [],
         "name": "5.8S rRNA",
         "notes": Object {
           "gene": Array [
@@ -289,7 +274,6 @@ Array [
       },
       Object {
         "end": 740,
-        "locations": Array [],
         "name": "internal transcribed spacer 2",
         "notes": Object {
           "note": Array [

@@ -301,7 +301,6 @@ function genbankToJson(sequence) {
 
   function newFeature() {
     result.features.push({
-      locations: [],
       notes: {},
     });
   }

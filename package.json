@@ -10,6 +10,7 @@
     "test-coverage": "jest --coverage",
     "test-only": "jest"
   },
+  "types": "genbank-parser.d.ts",
   "keywords": [
     "genbank",
     "parser"
