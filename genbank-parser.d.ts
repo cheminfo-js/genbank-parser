@@ -9,8 +9,8 @@ declare module 'genbank-parser' {
     size: number;
     definition: string;
     accession: string;
-    version: string;
-    keywords: string;
+    version?: string;
+    keywords?: string;
     source: string;
     organism: string;
     references: {
