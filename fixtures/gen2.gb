@@ -31,7 +31,7 @@ FEATURES             Location/Qualifiers
      rRNA            381..550
                      /gene="5.8S rRNA"
                      /product="5.8S ribosomal RNA"
-     misc_feature    551..740
+     misc_feature    551
                      /note="internal transcribed spacer 2"
 ORIGIN      
         1 cgtaacaagg tttccgtagg tgaacctgcg gaaggatcat tgatgagacc gtggaataaa

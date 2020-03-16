@@ -334,7 +334,7 @@ function genbankToJson(sequence) {
     });
     let feat = getCurrentFeature();
     feat.start = +locArr[0];
-    feat.end = +locArr[1];
+    feat.end = locArr[1] === undefined ? +locArr[0] : +locArr[1];
   }
 
   function parseFeatureNote(line) {
