@@ -1,3 +1,13 @@
+## [1.1.2](https://github.com/cheminfo-js/genbank-parser/compare/v1.1.1...v1.1.2) (2020-03-16)
+
+
+### Bug Fixes
+
+* handle annotation with position instead of range ([a3756fe](https://github.com/cheminfo-js/genbank-parser/commit/a3756fe50f1f9a38aae22b2aac47a0c51b76f1a9))
+* make version and keywords optional in ts definition ([9d25ea5](https://github.com/cheminfo-js/genbank-parser/commit/9d25ea5a037d895f227373aa8fe0009d4eb0fc74))
+
+
+
 ## [1.1.1](https://github.com/cheminfo-js/genbank-parser/compare/v1.1.0...v1.1.1) (2020-03-05)
 
 
