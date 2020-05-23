@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/cheminfo-js/genbank-parser/compare/v1.2.2...v1.2.3) (2020-05-23)
+
+
+### Bug Fixes
+
+* fix parsing when definition contains an = character ([05fa113](https://github.com/cheminfo-js/genbank-parser/commit/05fa1132be0c9d5627185760c782e8e5f860df74))
+
+
+
 ## [1.2.2](https://github.com/cheminfo-js/genbank-parser/compare/v1.2.1...v1.2.2) (2020-05-23)
 
 

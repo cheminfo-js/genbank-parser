@@ -1,6 +1,6 @@
 {
   "name": "genbank-parser",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "parse genbank",
   "main": "src/index.js",
   "scripts": {
