@@ -597,7 +597,6 @@ Array [
         "type": "terminator",
       },
     ],
-    "genbankDivision": null,
     "keywords": ".",
     "moleculeType": "ds-DNA",
     "name": "JHp0003",
