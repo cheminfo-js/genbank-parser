@@ -76,9 +76,6 @@ function genbankToJson(sequence) {
   let lastLineWasFeaturesTag;
   let lastLineWasLocation;
 
-  if (lines === null) {
-    throw new Error('sequence file is empty');
-  }
   let hasFoundLocus = false;
 
   for (let line of lines) {
