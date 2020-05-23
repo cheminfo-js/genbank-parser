@@ -7,7 +7,7 @@ const MONTHS = require('./utils/months');
 
 function genbankToJson(sequence) {
   if (typeof sequence !== 'string') {
-    throw new TypeError('sequence must be a string');
+    throw new TypeError('input must be a string');
   }
 
   let resultsArray = [];
