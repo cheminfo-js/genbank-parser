@@ -4,13 +4,13 @@ declare module 'genbank-parser' {
     sequence: string;
     circular: boolean;
     moleculeType: string;
-    genbankDivision: string | null;
+    version?: string;
+    keywords?: string;
+    genbankDivision?: string;
     date: string;
     size: number;
     definition: string;
     accession: string;
-    version?: string;
-    keywords?: string;
     source: string;
     organism: string;
     references: {

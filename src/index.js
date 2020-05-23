@@ -194,7 +194,6 @@ function genbankToJson(sequence) {
     const seq = result;
     let dateStr = '';
     if (!m[6]) {
-      seq.genbankDivision = null;
       dateStr = m[5];
     } else {
       seq.genbankDivision = m[5];
