@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/cheminfo-js/genbank-parser/compare/v1.2.0...v1.2.1) (2020-05-23)
+
+
+### Bug Fixes
+
+* correct genbank parsed result typescript interface ([298a8ce](https://github.com/cheminfo-js/genbank-parser/commit/298a8ce4ff21f947b0aae071c0cfc6bf80e83ae5))
+
+
+
 # [1.2.0](https://github.com/cheminfo-js/genbank-parser/compare/v1.1.2...v1.2.0) (2020-05-23)
 
 
