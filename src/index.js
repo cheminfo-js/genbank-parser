@@ -312,12 +312,7 @@ function genbankToJson(sequence) {
     /* if (line.charAt(21) === "/") {//T.H. Hard coded method
            qual = true;
          }*/
-    if (
-      line
-        .trim()
-        .charAt(0)
-        .match(/\//)
-    ) {
+    if (line.trim().charAt(0).match(/\//)) {
       // searches based on looking for / in beginning of line
       qual = true;
     } else if (line.match(/^[\s]*\/[\w]+=[\S]+/)) {
@@ -330,7 +325,7 @@ function genbankToJson(sequence) {
   function parseFeatureLocation(locStr) {
     locStr = locStr.trim();
     let locArr = [];
-    locStr.replace(/(\d+)/g, function(string, match) {
+    locStr.replace(/(\d+)/g, function (string, match) {
       locArr.push(match);
     });
     let feat = getCurrentFeature();

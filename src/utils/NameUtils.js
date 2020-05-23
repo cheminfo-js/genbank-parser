@@ -6,7 +6,7 @@ module.exports = {
    * @param {string} pName
    * @return {string} New name.
    */
-  reformatName: function(pName) {
+  reformatName: function (pName) {
     return pName.toString().replace(/ /g, '_');
   },
 };
