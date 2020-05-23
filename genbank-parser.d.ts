@@ -4,7 +4,7 @@ declare module 'genbank-parser' {
     sequence: string;
     circular: boolean;
     moleculeType: string;
-    genbankDivision: string;
+    genbankDivision: string | null;
     date: string;
     size: number;
     definition: string;
