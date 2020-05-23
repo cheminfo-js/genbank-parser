@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/cheminfo-js/genbank-parser/compare/v1.2.1...v1.2.2) (2020-05-23)
+
+
+### Bug Fixes
+
+* only description is always defined in reference ([3cd0ab3](https://github.com/cheminfo-js/genbank-parser/commit/3cd0ab3b56c31bb5b59f0950fb98a2b527ea1bdd))
+
+
+
 ## [1.2.1](https://github.com/cheminfo-js/genbank-parser/compare/v1.2.0...v1.2.1) (2020-05-23)
 
 
