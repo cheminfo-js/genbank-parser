@@ -188,19 +188,24 @@ function genbankToJson(sequence) {
     };
     line = removeFieldName(genbankAnnotationKey.LOCUS_TAG, line);
     const m = line.match(
-      /^([^\s]+)\s+(\d+)\s+bp\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)$/,
+      /^([^\s]+)\s+(\d+)\s+bp\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s*([^\s]+)?$/,
     );
     let locusName = m[1];
     let size = +m[2];
     let moleculeType = m[3];
     let circular = m[4] === 'circular';
-    let genbankDivision = m[5];
-
     const seq = result;
+    let dateStr = '';
+    if (!m[6]) {
+      seq.genbankDivision = null;
+      dateStr = m[5];
+    } else {
+      seq.genbankDivision = m[5];
+      dateStr = m[6];
+    }
     seq.circular = circular;
     seq.moleculeType = moleculeType;
-    seq.genbankDivision = genbankDivision;
-    const dateMatch = m[6].match(/^(\d{2})-(.{3})-(\d{4})$/);
+    const dateMatch = dateStr.match(/^(\d{2})-(.{3})-(\d{4})$/);
     const date = new Date();
     date.setFullYear(+dateMatch[3]);
     date.setUTCMonth(MONTHS.indexOf(dateMatch[2].toUpperCase()));

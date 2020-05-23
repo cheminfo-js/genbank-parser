@@ -13,6 +13,10 @@ describe('genbank parsing snapshots', () => {
   it('MPI genbank example', () => {
     expect(genbankParser(readFile('gen1.gb'))).toMatchSnapshot();
   });
+
+  it('geneious example 2', () => {
+    expect(genbankParser(readFile('geneious2.gb'))).toMatchSnapshot();
+  });
 });
 
 function readFile(filename) {
