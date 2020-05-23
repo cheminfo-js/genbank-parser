@@ -15,9 +15,9 @@ declare module 'genbank-parser' {
     organism: string;
     references: {
       description: string;
-      authors: string;
-      title: string;
-      journal: string;
+      authors?: string;
+      title?: string;
+      journal?: string;
     }[];
     features: {
       name: string;
