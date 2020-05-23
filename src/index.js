@@ -367,11 +367,7 @@ function genbankToJson(sequence) {
     let arr;
     line = line.trim();
 
-    if (line.match(/\/[a-zA-Z0-9]+=/)) {
-      arr = line.split(/=/);
-    } else {
-      arr = line.split(/[\s]+/);
-    }
+    arr = line.split(/[\s]+/);
 
     return arr[0];
   }
