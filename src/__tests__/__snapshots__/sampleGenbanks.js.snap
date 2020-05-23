@@ -719,3 +719,420 @@ Array [
   },
 ]
 `;
+
+exports[`genbank parsing snapshots p5 1`] = `
+Array [
+  Object {
+    "accession": "pET-51b_AG",
+    "circular": true,
+    "date": "2020-02-11T12:00:00.000Z",
+    "definition": "pET-51b(+) SNAP-E30R = SNAPf [Strep-His].",
+    "features": Array [
+      Object {
+        "end": 467,
+        "name": "Geneious type: motif",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: motif",
+          ],
+          "standard_name": Array [
+            "F1 Ori",
+          ],
+        },
+        "start": 12,
+        "strand": -1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 335,
+        "name": "Geneious type: Origin of Replication",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Origin of Replication",
+          ],
+          "standard_name": Array [
+            "f1 origin",
+          ],
+        },
+        "start": 29,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 1442,
+        "name": "Untitled Feature",
+        "notes": Object {
+          "standard_name": Array [
+            "AmpR",
+          ],
+        },
+        "start": 582,
+        "strand": -1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 1442,
+        "name": "Geneious type: Marker",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Marker",
+          ],
+          "standard_name": Array [
+            "amp marker",
+          ],
+        },
+        "start": 582,
+        "strand": -1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 1513,
+        "name": "Geneious type: Promoter",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Promoter",
+          ],
+          "standard_name": Array [
+            "amp prom",
+          ],
+        },
+        "start": 1485,
+        "strand": -1,
+        "type": "promoter",
+      },
+      Object {
+        "end": 2219,
+        "name": "Geneious type: Origin of Replication",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Origin of Replication",
+          ],
+          "standard_name": Array [
+            "pBR322 origin",
+          ],
+        },
+        "start": 1600,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 2825,
+        "name": "Untitled Feature",
+        "notes": Object {
+          "standard_name": Array [
+            "ROP",
+          ],
+        },
+        "start": 2634,
+        "strand": -1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 4356,
+        "name": "Untitled Feature",
+        "notes": Object {
+          "standard_name": Array [
+            "LacI",
+          ],
+        },
+        "start": 3397,
+        "strand": -1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 4488,
+        "name": "Geneious type: Regulatory Sequence",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Regulatory Sequence",
+          ],
+          "standard_name": Array [
+            "lacI reg",
+          ],
+        },
+        "start": 3397,
+        "strand": -1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 4557,
+        "name": "Geneious type: motif",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: motif",
+          ],
+          "standard_name": Array [
+            "LacI Prom",
+          ],
+        },
+        "start": 4480,
+        "strand": -1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 4887,
+        "name": "T7 promoter",
+        "notes": Object {
+          "gene": Array [
+            "T7 promoter",
+          ],
+          "standard_name": Array [
+            "T7 promoter misc",
+          ],
+        },
+        "start": 4870,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 4888,
+        "name": "Geneious type: Promoter",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Promoter",
+          ],
+          "standard_name": Array [
+            "T7 prom",
+          ],
+        },
+        "start": 4870,
+        "strand": 1,
+        "type": "promoter",
+      },
+      Object {
+        "end": 4915,
+        "name": "Geneious type: Regulatory Sequence",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Regulatory Sequence",
+          ],
+          "standard_name": Array [
+            "lacO reg",
+          ],
+        },
+        "start": 4888,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 4949,
+        "name": "Geneious type: Gene",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Gene",
+          ],
+          "standard_name": Array [
+            "T7_transl_en_RBS",
+          ],
+        },
+        "start": 4933,
+        "strand": 1,
+        "type": "gene",
+      },
+      Object {
+        "end": 4959,
+        "name": "(null)",
+        "notes": Object {
+          "gene": Array [
+            "(null)",
+          ],
+          "standard_name": Array [
+            "(null) misc signal",
+          ],
+        },
+        "start": 4957,
+        "strand": 1,
+        "type": "misc_signal",
+      },
+      Object {
+        "end": 4989,
+        "name": "Strep-Tag II",
+        "notes": Object {
+          "gene": Array [
+            "Strep-Tag II",
+          ],
+          "standard_name": Array [
+            "Strep-Tag II CDS",
+          ],
+        },
+        "start": 4966,
+        "strand": 1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 5010,
+        "name": "Geneious type: Gene",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Gene",
+          ],
+          "standard_name": Array [
+            "EK",
+          ],
+        },
+        "start": 4996,
+        "strand": 1,
+        "type": "gene",
+      },
+      Object {
+        "end": 5010,
+        "name": "Enterokinase",
+        "notes": Object {
+          "gene": Array [
+            "Enterokinase",
+          ],
+          "standard_name": Array [
+            "Enterokinase CDS",
+          ],
+        },
+        "start": 4996,
+        "strand": 1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 5565,
+        "name": "AGTSM",
+        "notes": Object {
+          "gene": Array [
+            "AGTSM",
+          ],
+          "standard_name": Array [
+            "AGTSM CDS",
+          ],
+        },
+        "start": 5020,
+        "strand": 1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 5109,
+        "name": "Geneious type: motif",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: motif",
+          ],
+          "standard_name": Array [
+            "E30R",
+          ],
+        },
+        "start": 5107,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 5582,
+        "name": "Untitled Feature",
+        "notes": Object {
+          "standard_name": Array [
+            "jh330",
+          ],
+        },
+        "start": 5548,
+        "strand": 1,
+        "type": "primer_bind",
+      },
+      Object {
+        "end": 5582,
+        "name": "Untitled Feature",
+        "notes": Object {
+          "standard_name": Array [
+            "jh331",
+          ],
+        },
+        "start": 5548,
+        "strand": -1,
+        "type": "primer_bind",
+      },
+      Object {
+        "end": 5566,
+        "name": "Geneious type: Editing History Deletion",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Editing History Deletion",
+          ],
+          "standard_name": Array [
+            "GGCCGCCTGGAAGTTCTGTTCCAGGGCCCGAAAGCTTTCCTCGAGGGATCCGAAATCGGTACTGGCTTTCCATTCGACCCCCATTATGTGGAAGTCCTGGGCGAGCGCATGCACTACGTCGATGTTGGTCCGCGCGATGGCACCCCTGTGCTGTTCCTGCACGGTAACCCGACCTCCTCCTACGTGTGGCGCAACATCATCCCGCATGTTGCACCGACCCATCGCTGCATTGCTCCAGACCTGATCGGTATGGGCAAATCCGACAAACCAGACCTGGGTTATTTCTTCGACGACCACGTCCGCTTCATGGATGCCTTCATCGAAGCCCTGGGTCTGGAAGAGGTCGTCCTGGTCATTCACGACTGGGGCTCCGCTCTGGGTTTCCACTGGGCCAAGCGCAATCCAGAGCGCGTCAAAGGTATTGCATTTATGGAGTTCATCCGCCCTATCCCGACCTGGGACGAATGGCCAGAATTTGCCCGCGAGACCTTCCAGGCCTTCCGCACCACCGACGTCGGCCGCAAGCTGATCATCGATCAGAACGTTTTTATCGAGGGTACGCTGCCGATGGGTGTCGTCCGCCCGCTGACTGAAGTCGAGATGGACCATTACCGCGAGCCGTTCCTGAATCCTGTTGACCGCGAGCCACTGTGGCGCTTCCCAAACGAGCTGCCAATCGCCGGTGAGCCAGCGAACATCGTCGCGCTGGTCGAAGAATACATGGACTGGCTGCACCAGTCCCCTGTCCCGAAGCTGCTGTTCTGGGGCACCCCAGGCGTTCTGATCCCACCGGCCGAAGCCGCTCGCCTGGCCAAAAGCCTGCCTAACTGCAAGGCTGTGGACATCGGCCCGGGTCTGAATCTGCTGCAAGAAGACAACCCGGACCTGATCGGCAGCGAGATCGCGCGCTGGCTGTCTACTCTGGAGATTTCCGGT",
+          ],
+        },
+        "start": 5565,
+        "strand": 1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 5622,
+        "name": "His-Tag",
+        "notes": Object {
+          "gene": Array [
+            "His-Tag",
+          ],
+          "standard_name": Array [
+            "His-Tag CDS",
+          ],
+        },
+        "start": 5593,
+        "strand": 1,
+        "type": "CDS",
+      },
+      Object {
+        "end": 5625,
+        "name": "(null)",
+        "notes": Object {
+          "gene": Array [
+            "(null)",
+          ],
+          "standard_name": Array [
+            "(null) misc signal",
+          ],
+        },
+        "start": 5623,
+        "strand": 1,
+        "type": "misc_signal",
+      },
+      Object {
+        "end": 5706,
+        "name": "Geneious type: motif",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: motif",
+          ],
+          "standard_name": Array [
+            "T7 Ter",
+          ],
+        },
+        "start": 5659,
+        "strand": -1,
+        "type": "misc_feature",
+      },
+      Object {
+        "end": 5707,
+        "name": "Geneious type: Terminator",
+        "notes": Object {
+          "note": Array [
+            "Geneious type: Terminator",
+          ],
+          "standard_name": Array [
+            "T7 term",
+          ],
+        },
+        "start": 5664,
+        "strand": 1,
+        "type": "terminator",
+      },
+    ],
+    "keywords": ".",
+    "moleculeType": "ds-DNA",
+    "name": "JHp0005",
+    "organism": "Unknown Unclassified.",
+    "references": Array [
+      Object {
+        "authors": "Self",
+        "description": "1  (bases 1 to 6325)",
+        "journal": "Unpublished. COMMENT SECID/File created by SciEd Central, Scientific & Educational Software COMMENT COMMENT ApEinfo:methylated:1",
+      },
+    ],
+    "sequence": "tggcgaatgggacgcgccctgtagcggcgcattaagcgcggcgggtgtggtggttacgcgcagcgtgaccgctacacttgccagcgccctagcgcccgctcctttcgctttcttcccttcctttctcgccacgttcgccggctttccccgtcaagctctaaatcgggggctccctttagggttccgatttagtgctttacggcacctcgaccccaaaaaacttgattagggtgatggttcacgtagtgggccatcgccctgatagacggtttttcgccctttgacgttggagtccacgttctttaatagtggactcttgttccaaactggaacaacactcaaccctatctcggtctattcttttgatttataagggattttgccgatttcggcctattggttaaaaaatgagctgatttaacaaaaatttaacgcgaattttaacaaaatattaacgtttacaatttctggcggcacgatggcatgagattatcaaaaaggatcttcacctagatccttttaaattaaaaatgaagttttaaatcaatctaaagtatatatgagtaaacttggtctgacagttaccaatgcttaatcagtgaggcacctatctcagcgatctgtctatttcgttcatccatagttgcctgactccccgtcgtgtagataactacgatacgggagggcttaccatctggccccagtgctgcaatgataccgcgagacccacgctcaccggctccagatttatcagcaataaaccagccagccggaagggccgagcgcagaagtggtcctgcaactttatccgcctccatccagtctattaattgttgccgggaagctagagtaagtagttcgccagttaatagtttgcgcaacgttgttgccattgctacaggcatcgtggtgtcacgctcgtcgtttggtatggcttcattcagctccggttcccaacgatcaaggcgagttacatgatcccccatgttgtgcaaaaaagcggttagctccttcggtcctccgatcgttgtcagaagtaagttggccgcagtgttatcactcatggttatggcagcactgcataattctcttactgtcatgccatccgtaagatgcttttctgtgactggtgagtactcaaccaagtcattctgagaatagtgtatgcggcgaccgagttgctcttgcccggcgtcaatacgggataataccgcgccacatagcagaactttaaaagtgctcatcattggaaaacgttcttcggggcgaaaactctcaaggatcttaccgctgttgagatccagttcgatgtaacccactcgtgcacccaactgatcttcagcatcttttactttcaccagcgtttctgggtgagcaaaaacaggaaggcaaaatgccgcaaaaaagggaataagggcgacacggaaatgttgaatactcatactcttcctttttcaatcatgattgaagcatttatcagggttattgtctcatgagcggatacatatttgaatgtatttagaaaaataaacaaataggtcatgaccaaaatcccttaacgtgagttttcgttccactgagcgtcagaccccgtagaaaagatcaaaggatcttcttgagatcctttttttctgcgcgtaatctgctgcttgcaaacaaaaaaaccaccgctaccagcggtggtttgtttgccggatcaagagctaccaactctttttccgaaggtaactggcttcagcagagcgcagataccaaatactgtccttctagtgtagccgtagttaggccaccacttcaagaactctgtagcaccgcctacatacctcgctctgctaatcctgttaccagtggctgctgccagtggcgataagtcgtgtcttaccgggttggactcaagacgatagttaccggataaggcgcagcggtcgggctgaacggggggttcgtgcacacagcccagcttggagcgaacgacctacaccgaactgagatacctacagcgtgagctatgagaaagcgccacgcttcccgaagggagaaaggcggacaggtatccggtaagcggcagggtcggaacaggagagcgcacgagggagcttccagggggaaacgcctggtatctttatagtcctgtcgggtttcgccacctctgacttgagcgtcgatttttgtgatgctcgtcaggggggcggagcctatggaaaaacgccagcaacgcggcctttttacggttcctggccttttgctggccttttgctcacatgttctttcctgcgttatcccctgattctgtggataaccgtattaccgcctttgagtgagctgataccgctcgccgcagccgaacgaccgagcgcagcgagtcagtgagcgaggaagcggaagagcgcctgatgcggtattttctccttacgcatctgtgcggtatttcacaccgcatatatggtgcactctcagtacaatctgctctgatgccgcatagttaagccagtatacactccgctatcgctacgtgactgggtcatggctgcgccccgacacccgccaacacccgctgacgcgccctgacgggcttgtctgctcccggcatccgcttacagacaagctgtgaccgtctccgggagctgcatgtgtcagaggttttcaccgtcatcaccgaaacgcgcgaggcagctgcggtaaagctcatcagcgtggtcgtgaagcgattcacagatgtctgcctgttcatccgcgtccagctcgttgagtttctccagaagcgttaatgtctggcttctgataaagcgggccatgttaagggcggttttttcctgtttggtcactgatgcctccgtgtaagggggatttctgttcatgggggtaatgataccgatgaaacgagagaggatgctcacgatacgggttactgatgatgaacatgcccggttactggaacgttgtgagggtaaacaactggcggtatggatgcggcgggaccagagaaaaatcactcagggtcaatgccagcgcttcgttaatacagatgtaggtgttccacagggtagccagcagcatcctgcgatgcagatccggaacataatggtgcagggcgctgacttccgcgtttccagactttacgaaacacggaaaccgaagaccattcatgttgttgctcaggtcgcagacgttttgcagcagcagtcgcttcacgttcgctcgcgtatcggtgattcattctgctaaccagtaaggcaaccccgccagcctagccgggtcctcaacgacaggagcacgatcatgctagtcatgccccgcgcccaccggaaggagctgactgggttgaaggctctcaagggcatcggtcgagatcccggtgcctaatgagtgagctaacttacattaattgcgttgcgctcactgcccgctttccagtcgggaaacctgtcgtgccagctgcattaatgaatcggccaacgcgcggggagaggcggtttgcgtattgggcgccagggtggtttttcttttcaccagtgagacgggcaacagctgattgcccttcaccgcctggccctgagagagttgcagcaagcggtccacgctggtttgccccagcaggcgaaaatcctgtttgatggtggttaacggcgggatataacatgagctgtcttcggtatcgtcgtatcccactaccgagatgtccgcaccaacgcgcagcccggactcggtaatggcgcgcattgcgcccagcgccatctgatcgttggcaaccagcatcgcagtgggaacgatgccctcattcagcatttgcatggtttgttgaaaaccggacatggcactccagtcgccttcccgttccgctatcggctgaatttgattgcgagtgagatatttatgccagccagccagacgcagacgcgccgagacagaacttaatgggcccgctaacagcgcgatttgctggtgacccaatgcgaccagatgctccacgcccagtcgcgtaccgtcttcatgggagaaaataatactgttgatgggtgtctggtcagagacatcaagaaataacgccggaacattagtgcaggcagcttccacagcaatggcatcctggtcatccagcggatagttaatgatcagcccactgacgcgttgcgcgagaagattgtgcaccgccgctttacaggcttcgacgccgcttcgttctaccatcgacaccaccacgctggcacccagttgatcggcgcgagatttaatcgccgcgacaatttgcgacggcgcgtgcagggccagactggaggtggcaacgccaatcagcaacgactgtttgcccgccagttgttgtgccacgcggttgggaatgtaattcagctccgccatcgccgcttccactttttcccgcgttttcgcagaaacgtggctggcctggttcaccacgcgggaaacggtctgataagagacaccggcatactctgcgacatcgtataacgttactggtttcacattcaccaccctgaattgactctcttccgggcgctatcatgccataccgcgaaaggttttgcgccattcgatggtgtccgggatctcgacgctctcccttatgcgactcctgcattaggaagcagcccagtagtaggttgaggccgttgagcaccgccgccgcaaggaatggtgcatgcaaggagatggcgcccaacagtcccccggccacggggcctgccaccatacccacgccgaaacaagcgctcatgagcccgaagtggcgagcccgatcttccccatcggtgatgtcggcgatataggcgccagcaaccgcacctgtggcgccggtgatgccggccacgatgcgtccggcgtagaggatcgagatcgatctcgatcccgcgaaattaatacgactcactataggggaattgtgagcggataacaattcccctctagaaataattttgtttaactttaagaaggagatataccatggcaagctggagccacccgcagttcgaaaagggtgcagatgacgacgacaaggtaccgcatatggataaagactgcgaaatgaaacgcactaccctggacagcccgctgggtaaactggaactgagcggttgcgagcagggcctgcaccgcatcattttcctgggcaaaggtacgagcgctgcggatgcggtcgaagtaccggctccggctgcggttctgggtggcccggagccgctgatgcaggctaccgcatggctgaacgcatattttcaccagccagaggcgattgaagagttccctgtaccggccctgcatcacccggtatttcagcaggaatcctttacccgtcaggtactgtggaaactgctgaaagtagtgaaattcggcgaggtgatctcctattcccatctggcggcgctggctggcaacccagcggcaactgcggcggtgaaaaccgctctgtctggtaatccggtgccaattctgatcccgtgccaccgtgtggttcagggcgacctggacgtaggtggctacgaaggcggcctggctgtgaaagaatggctgctggcgcacgaaggtcaccgtctgggtaaaccaggcctgggcgctccgggcttctcctcaatttccgctcatcaccaccatcatcaccatcaccaccactaattaacctaggctgctgccaccgctgagcaataactagcataaccccttggggcctctaaacgggtcttgaggggttttttgctgaaaggaggaactatatccggat",
+    "size": 5731,
+    "source": "Unknown.",
+  },
+]
+`;

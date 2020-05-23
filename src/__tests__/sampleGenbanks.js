@@ -18,7 +18,7 @@ describe('genbank parsing snapshots', () => {
     expect(genbankParser(readFile('geneious2.gb'))).toMatchSnapshot();
   });
 
-  it.only('p5', () => {
+  it('p5', () => {
     expect(genbankParser(readFile('JHp0005.gb'))).toMatchSnapshot();
   });
 });

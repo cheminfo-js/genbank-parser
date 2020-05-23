@@ -365,12 +365,12 @@ function genbankToJson(sequence) {
 
   function getLineFieldName(line) {
     let arr;
-    line = line.replace(/^[\s]*/, '');
+    line = line.trim();
 
-    if (line.indexOf('=') < 0) {
-      arr = line.split(/[\s]+/);
-    } else {
+    if (line.match(/\/[a-zA-Z0-9]+=/)) {
       arr = line.split(/=/);
+    } else {
+      arr = line.split(/[\s]+/);
     }
 
     return arr[0];
