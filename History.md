@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/cheminfo-js/genbank-parser/compare/v1.1.2...v1.2.0) (2020-05-23)
+
+
+### Features
+
+* support parsing of genbank that does not have a genbank division ([d802694](https://github.com/cheminfo-js/genbank-parser/commit/d80269453e7b610d50bcb36370f8b7aa79f712ec))
+
+
+
 ## [1.1.2](https://github.com/cheminfo-js/genbank-parser/compare/v1.1.1...v1.1.2) (2020-03-16)
 
 
